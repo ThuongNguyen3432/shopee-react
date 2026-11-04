@@ -1,3 +1,5 @@
+import SeeAll from './SeeAll.jsx';
+
 export default function VoucherBar() {
   const vouchers = [
     { label: 'Giảm 50K', sub: 'Đơn từ 200K' },
@@ -17,7 +19,7 @@ export default function VoucherBar() {
           </div>
         ))}
       </div>
-      <a href="/vouchers" className="ml-auto text-shopee-orange text-xs whitespace-nowrap">Xem tất cả voucher ›</a>
+      <SeeAll to="/vouchers">Xem tất cả voucher</SeeAll>
     </div>
   );
 }

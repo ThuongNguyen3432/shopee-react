@@ -1,15 +1,27 @@
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import {
+  Element4,
+  Box,
+  Category,
+  Bill,
+  Profile2User,
+  TicketDiscount,
+  Image,
+  Flash,
+  Setting,
+  ArrowLeft,
+} from 'iconsax-react';
 
 const NAV = [
-  { to: '/admin', label: 'Dashboard', icon: '📊', end: true },
-  { to: '/admin/products', label: 'Sản phẩm', icon: '📦' },
-  { to: '/admin/categories', label: 'Danh mục', icon: '🗂️' },
-  { to: '/admin/orders', label: 'Đơn hàng', icon: '🧾' },
-  { to: '/admin/users', label: 'Người dùng', icon: '👥' },
-  { to: '/admin/vouchers', label: 'Voucher', icon: '🎟️' },
-  { to: '/admin/banners', label: 'Banner', icon: '🖼️' },
-  { to: '/admin/flash-sale', label: 'Flash Sale', icon: '⚡' },
-  { to: '/admin/settings', label: 'Cài đặt', icon: '⚙️' },
+  { to: '/admin', label: 'Dashboard', Icon: Element4, end: true },
+  { to: '/admin/products', label: 'Sản phẩm', Icon: Box },
+  { to: '/admin/categories', label: 'Danh mục', Icon: Category },
+  { to: '/admin/orders', label: 'Đơn hàng', Icon: Bill },
+  { to: '/admin/users', label: 'Người dùng', Icon: Profile2User },
+  { to: '/admin/vouchers', label: 'Voucher', Icon: TicketDiscount },
+  { to: '/admin/banners', label: 'Banner', Icon: Image },
+  { to: '/admin/flash-sale', label: 'Flash Sale', Icon: Flash },
+  { to: '/admin/settings', label: 'Cài đặt', Icon: Setting },
 ];
 
 export default function AdminLayout() {
@@ -31,13 +43,15 @@ export default function AdminLayout() {
                 `flex items-center gap-3 px-4 py-2.5 text-sm transition ${isActive ? 'bg-shopee-orange text-white' : 'hover:bg-gray-800 hover:text-white'}`
               }
             >
-              <span>{n.icon}</span>
+              <n.Icon size={18} variant="Linear" color="currentColor" />
               <span>{n.label}</span>
             </NavLink>
           ))}
         </nav>
         <div className="p-4 border-t border-gray-800 text-xs text-gray-500">
-          <button onClick={() => navigate('/')} className="text-gray-400 hover:text-white">← Về cửa hàng</button>
+          <button onClick={() => navigate('/')} className="text-gray-400 hover:text-white flex items-center gap-1.5">
+            <ArrowLeft size={14} variant="Linear" color="currentColor" /> Về cửa hàng
+          </button>
         </div>
       </aside>
 

@@ -1,12 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ShoppingCart, Bell, Search, Globe, HelpCircle, User } from 'lucide-react';
+import { ShoppingCart, Notification, SearchNormal1, Global, MessageQuestion, ShoppingBag, CloseCircle, ArrowDown2 } from 'iconsax-react';
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
+import { Button } from '@/components/ui/button';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
+import SeeAll from './SeeAll.jsx';
 
 const SUGGESTIONS = ['Áo thun nam', 'Tai nghe bluetooth', 'Dép nữ', 'Balo laptop', 'Son môi', 'Ốp lưng iPhone', 'Quần jean nam', 'Kem chống nắng', 'Giày sneaker', 'Bình giữ nhiệt'];
 const CATS = ['Tất cả', 'Thời Trang Nam', 'Điện Thoại', 'Thiết Bị Điện Tử', 'Máy Tính', 'Máy Ảnh', 'Đồng Hồ', 'Giày Dép', 'Gia Dụng', 'Thể Thao', 'Mẹ & Bé', 'Nhà Cửa', 'Sắc Đẹp', 'Sức Khỏe'];
 const TRENDING = ['Áo thun nam', 'Tai nghe bluetooth', 'Dép nữ', 'Balo laptop', 'Son môi', 'Ốp lưng'];
+const NOTIFICATIONS = [
+  'Đơn hàng #12345 đã được giao',
+  'Voucher giảm 50K dành cho bạn',
+  'Shop bạn theo dõi vừa đăng sản phẩm mới',
+  'Flash Sale bắt đầu lúc 12:00',
+  'Đánh giá sản phẩm để nhận xu',
+];
 
 export default function Header() {
   const navigate = useNavigate();
@@ -27,8 +37,12 @@ export default function Header() {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [authError, setAuthError] = useState('');
+  const [authSuccess, setAuthSuccess] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
   const searchRef = useRef(null);
+  const notifRef = useRef(null);
+  const userRef = useRef(null);
+  const cartRef = useRef(null);
 
   useEffect(() => {
     const onClick = (e) => {
@@ -36,6 +50,9 @@ export default function Header() {
         setShowSuggest(false);
         setShowCat(false);
       }
+      if (notifRef.current && !notifRef.current.contains(e.target)) setShowNotif(false);
+      if (userRef.current && !userRef.current.contains(e.target)) setShowUser(false);
+      if (cartRef.current && !cartRef.current.contains(e.target)) setShowCart(false);
     };
     document.addEventListener('mousedown', onClick);
     return () => document.removeEventListener('mousedown', onClick);
@@ -68,17 +85,60 @@ export default function Header() {
             </span>
           </div>
           <div className="flex items-center gap-4">
-            <button onClick={() => setShowNotif((v) => !v)} className="hover:text-shopee-orange transition relative flex items-center gap-1">
-              <Bell size={16} /> Thông Báo
-              <span className="absolute -top-1 -right-2 bg-shopee-orange text-white text-[9px] px-1 rounded-full">5</span>
-            </button>
-            <a href="#" className="hover:text-shopee-orange transition">❓ Trợ Giúp</a>
-            <a href="#" className="hover:text-shopee-orange transition flex items-center gap-0.5">🌐 Tiếng Việt <span className="text-[10px]">▾</span></a>
+            <div className="relative" ref={notifRef}>
+              <TooltipProvider delayDuration={150}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button
+                      onClick={() => setShowNotif((v) => !v)}
+                      className="hover:text-shopee-orange transition relative flex items-center gap-1"
+                      aria-label="Thông báo"
+                    >
+                      <Notification size={16} variant="Outline" color="currentColor" /> Thông Báo
+                      <span className="absolute -top-1.5 right-0 bg-shopee-orange text-white text-[9px] px-1 rounded-full leading-[13px]">5</span>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" align="end">Thông báo</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              {showNotif && (
+                <div className="absolute right-0 top-full mt-2 w-80 bg-white shadow-lg rounded z-50 text-sm overflow-hidden">
+                  <div className="p-3 border-b font-medium text-gray-700">Thông Báo Mới Nhận</div>
+                  <div className="max-h-80 overflow-y-auto">
+                    {NOTIFICATIONS.map((n, i) => (
+                      <div key={i} className="px-3 py-2.5 hover:bg-gray-50 border-b last:border-0 cursor-pointer text-gray-700">{n}</div>
+                    ))}
+                  </div>
+                  <SeeAll to="/vouchers" className="ml-0 w-full justify-center p-2.5 border-t" />
+                </div>
+              )}
+            </div>
+            <a href="#" className="hover:text-shopee-orange transition flex items-center gap-1"><MessageQuestion size={14} variant="Outline" color="currentColor" /> Trợ Giúp</a>
+            <a href="#" className="hover:text-shopee-orange transition flex items-center gap-0.5"><Global size={14} variant="Outline" color="currentColor" /> Tiếng Việt <ArrowDown2 size={10} variant="Linear" color="currentColor" className="opacity-70" /></a>
             {user ? (
-              <button onClick={() => setShowUser((v) => !v)} className="hover:text-shopee-orange transition flex items-center gap-1.5">
-                <img src={user.user_metadata?.avatar_url || user.user_metadata?.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.email || 'U')}&background=ee4d2d&color=fff`} alt="avatar" className="w-5 h-5 rounded-full" />
-                <span className="max-w-[120px] truncate">{user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0]}</span>
-              </button>
+              <div className="relative" ref={userRef}>
+                <TooltipProvider delayDuration={150}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button onClick={() => setShowUser((v) => !v)} className="hover:text-shopee-orange transition flex items-center gap-1.5" aria-label="Tài khoản">
+                        <img src={user.user_metadata?.avatar_url || user.user_metadata?.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.email || 'U')}&background=ee4d2d&color=fff`} alt="avatar" className="w-5 h-5 rounded-full" />
+                        <span className="max-w-[120px] truncate">{user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0]}</span>
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" align="end">Tài khoản</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+
+                {showUser && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white shadow-lg rounded z-50 text-sm overflow-hidden">
+                    {['Tài khoản của tôi', 'Đơn mua', 'Kho voucher', 'Shopee Xu'].map((t) => (
+                      <div key={t} className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-gray-700">{t}</div>
+                    ))}
+                    <div onClick={() => { signOut(); setShowUser(false); }} className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-red-500 border-t">Đăng xuất</div>
+                  </div>
+                )}
+              </div>
             ) : (
               <>
                 <button onClick={() => setShowLogin(true)} className="hover:text-shopee-orange transition">Đăng Nhập</button>
@@ -89,52 +149,26 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Notification dropdown */}
-      {showNotif && (
-        <div className="absolute right-2 top-8 w-80 bg-white shadow-lg rounded z-50 text-sm">
-          <div className="p-3 border-b font-medium text-gray-700">Thông Báo Mới Nhận</div>
-          {['Đơn hàng #12345 đã được giao', 'Voucher giảm 50K dành cho bạn', 'Shop bạn theo dõi vừa đăng sản phẩm mới', 'Flash Sale bắt đầu lúc 12:00', 'Đánh giá sản phẩm để nhận xu'].map((n, i) => (
-            <div key={i} className="px-3 py-2 hover:bg-gray-50 border-b last:border-0 cursor-pointer text-gray-700">{n}</div>
-          ))}
-          <a href="/" className="block p-2 text-center text-shopee-orange text-xs cursor-pointer">Xem tất cả</a>
-        </div>
-      )}
-
-      {/* User dropdown */}
-      {showUser && user && (
-        <div className="absolute right-2 top-8 w-48 bg-white shadow-lg rounded z-50 text-sm">
-          {['Tài khoản của tôi', 'Đơn mua', 'Kho voucher', 'Shopee Xu'].map((t) => (
-            <div key={t} className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-gray-700">{t}</div>
-          ))}
-          <div onClick={() => { signOut(); setShowUser(false); }} className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-red-500 border-t">Đăng xuất</div>
-        </div>
-      )}
-
       {/* Main header */}
       <header className="bg-gradient-to-r from-[#f53d2d] to-[#f63]">
         <div className="container flex items-center gap-2 md:gap-4 h-[60px] md:h-[80px] px-2">
           {/* Logo */}
           <a href="/" className="flex items-center gap-2 text-white font-bold text-[22px] md:text-[26px] tracking-tight shrink-0 leading-none">
-            <svg width="28" height="28" className="md:w-[34px] md:h-[34px]" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="12" width="36" height="24" rx="3" fill="#fff" opacity="0.18" />
-              <path d="M6 12h28l-2.5 17H8.5L6 12z" fill="#fff" />
-              <circle cx="14" cy="32" r="2" fill="#ee4d2d" />
-              <circle cx="26" cy="32" r="2" fill="#ee4d2d" />
-              <path d="M4 8h4l2 4" stroke="#fff" strokeWidth="2" strokeLinecap="round" fill="none" />
-            </svg>
+            <ShoppingBag size={30} variant="Bold" color="#fff" />
             <span className="hidden sm:inline">Shopee</span>
           </a>
 
           {/* Search */}
-          <div className="flex-1 relative h-9 md:h-10 flex items-center" ref={searchRef}>
-            <form onSubmit={handleSearch} className="bg-white rounded flex items-stretch h-9 md:h-10 overflow-hidden w-full">
+          <div className="flex-1 relative min-w-0" ref={searchRef}>
+            <div className="relative h-9 md:h-10 flex items-center">
+              <form onSubmit={handleSearch} className="bg-white rounded flex items-stretch h-9 md:h-10 overflow-hidden w-full">
               <div className="relative hidden md:block">
                 <button
                   type="button"
                   onClick={() => setShowCat((v) => !v)}
                   className="h-full px-3 text-xs text-gray-600 border-r border-gray-200 flex items-center gap-1 hover:bg-gray-50 whitespace-nowrap"
                 >
-                  {cat} <span className="text-[10px]">▾</span>
+                  {cat} <ArrowDown2 size={10} variant="Linear" color="currentColor" className="opacity-70" />
                 </button>
                 {showCat && (
                   <div className="absolute top-10 left-0 w-44 bg-white shadow-lg rounded z-40 text-xs max-h-72 overflow-y-auto">
@@ -159,7 +193,7 @@ export default function Header() {
                 onFocus={() => setShowSuggest(true)}
               />
               <button type="submit" className="bg-shopee-orange text-white px-6 text-sm hover:bg-shopee-red flex items-center justify-center transition">
-                <Search size={18} />
+                <SearchNormal1 size={20} variant="Linear" color="#fff" />
               </button>
             </form>
             {showSuggest && q && filtered.length > 0 && (
@@ -170,12 +204,13 @@ export default function Header() {
                     className="px-3 py-2 hover:bg-gray-50 cursor-pointer flex items-center gap-2 text-gray-700"
                     onClick={() => { setQ(s); setShowSuggest(false); }}
                   >
-                    <span className="text-gray-400">🔍</span> {s}
+                    <SearchNormal1 size={14} variant="Linear" className="text-gray-400 shrink-0" /> {s}
                   </div>
                 ))}
               </div>
             )}
-            <div className="absolute top-full left-0 mt-1.5 hidden md:flex gap-3 text-white text-xs opacity-90 flex-wrap">
+            </div>
+            <div className="hidden md:flex gap-3 mt-1.5 text-white text-xs leading-4 opacity-90 flex-wrap">
               {TRENDING.map((t) => (
                 <a key={t} href="#" className="hover:underline" onClick={(e) => { e.preventDefault(); navigate(`/search?q=${encodeURIComponent(t)}`); }}>{t}</a>
               ))}
@@ -183,17 +218,24 @@ export default function Header() {
           </div>
 
           {/* Cart */}
-          <div className="relative shrink-0">
-            <button onClick={() => setShowCart((v) => !v)} className="relative text-white p-1 hover:opacity-90" aria-label="Giỏ hàng">
-              <ShoppingCart size={28} />
-              {count > 0 && (
-                <span className="absolute -top-1 -right-1 bg-white text-shopee-orange text-[11px] font-bold px-1.5 rounded-full min-w-[20px] text-center leading-[18px] border border-shopee-orange">
-                  {count}
-                </span>
-              )}
-            </button>
+          <div className="relative shrink-0" ref={cartRef}>
+            <TooltipProvider delayDuration={150}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button onClick={() => setShowCart((v) => !v)} className="relative text-white p-1 hover:opacity-90" aria-label="Giỏ hàng">
+                    <ShoppingCart size={26} variant="Bold" color="#fff" />
+                    {count > 0 && (
+                      <span className="absolute -top-1 -right-1 bg-white text-shopee-orange text-[11px] font-bold px-1.5 rounded-full min-w-[20px] text-center leading-[18px] border border-shopee-orange">
+                        {count}
+                      </span>
+                    )}
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>Giỏ hàng</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
             {showCart && (
-              <div className="absolute right-0 top-10 w-96 bg-white shadow-xl rounded z-50 text-sm">
+              <div className="absolute right-0 top-full mt-2 w-96 bg-white shadow-xl rounded z-50 text-sm">
                 <div className="p-3 border-b font-medium text-gray-700">Sản phẩm mới thêm</div>
                 {items.length === 0 && <div className="p-6 text-center text-gray-400">Giỏ hàng trống</div>}
                 <div className="max-h-72 overflow-y-auto">
@@ -205,7 +247,9 @@ export default function Header() {
                         <div className="text-shopee-orange text-sm font-bold">₫{i.price.toLocaleString('vi-VN')}</div>
                       </div>
                       <div className="text-xs text-gray-500">x{i.qty}</div>
-                      <button onClick={() => remove(i.id)} className="text-gray-400 hover:text-red-500 px-1">✕</button>
+                      <button onClick={() => remove(i.id)} className="text-gray-400 hover:text-red-500 px-1" aria-label="Xoá">
+                        <CloseCircle size={16} variant="Linear" color="currentColor" />
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -228,7 +272,9 @@ export default function Header() {
           <div className="bg-white rounded w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-3">
               <div className="font-medium text-gray-700">Đăng nhập</div>
-              <button onClick={() => setShowLogin(false)} className="text-gray-400 hover:text-gray-700 text-xl">✕</button>
+              <button onClick={() => setShowLogin(false)} className="text-gray-400 hover:text-gray-700" aria-label="Đóng">
+                <CloseCircle size={22} variant="Linear" color="currentColor" />
+              </button>
             </div>
             <p className="text-xs text-gray-500 mb-3">Đăng nhập để theo dõi đơn hàng, nhận voucher và nhiều ưu đãi hơn.</p>
 
@@ -263,8 +309,10 @@ export default function Header() {
             </div>
 
             {authError && <div className="text-xs text-red-500 mb-2">{authError}</div>}
+            {authSuccess && <div className="text-xs text-green-600 mb-2 bg-green-50 p-2 rounded">{authSuccess}</div>}
 
-            <button
+            <Button
+              variant="shopee"
               disabled={authLoading}
               onClick={async () => {
                 setAuthError('');
@@ -281,14 +329,18 @@ export default function Header() {
                       : await signUpWithPhone(phone, password, name);
                   }
                   if (res?.error) setAuthError(res.error.message);
-                  else { setShowLogin(false); setEmail(''); setPhone(''); setPassword(''); setName(''); }
+                  else if (mode === 'signup' && loginTab === 'email' && !res?.data?.session) {
+                    setAuthSuccess('Đã gửi email xác thực. Vui lòng kiểm tra hộp thư (và spam) để kích hoạt tài khoản.');
+                  } else {
+                    setShowLogin(false); setEmail(''); setPhone(''); setPassword(''); setName('');
+                  }
                 } catch (e) { setAuthError(e.message); }
                 finally { setAuthLoading(false); }
               }}
-              className="w-full bg-shopee-orange text-white py-2.5 rounded text-sm font-medium hover:bg-shopee-red disabled:opacity-50"
+              className="w-full h-10"
             >
               {authLoading ? 'Đang xử lý...' : (mode === 'signin' ? 'Đăng nhập' : 'Đăng ký')}
-            </button>
+            </Button>
 
             <div className="flex items-center gap-2 my-3">
               <div className="flex-1 h-px bg-gray-200" />

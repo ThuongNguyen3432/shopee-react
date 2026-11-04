@@ -1,3 +1,5 @@
+import { CloseCircle, Star1, Minus, Add } from 'iconsax-react';
+
 export default function ProductModal({ product, onClose, onAdd }) {
   if (!product) return null;
   return (
@@ -5,7 +7,9 @@ export default function ProductModal({ product, onClose, onAdd }) {
       <div className="bg-white rounded-sm max-w-3xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
         <div className="flex justify-between items-center p-3 border-b">
           <div className="font-medium text-gray-700">Xem nhanh sản phẩm</div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-700 text-xl">✕</button>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-700" aria-label="Đóng">
+            <CloseCircle size={22} variant="Linear" color="currentColor" />
+          </button>
         </div>
         <div className="grid grid-cols-2 gap-4 p-4">
           <div>
@@ -19,7 +23,7 @@ export default function ProductModal({ product, onClose, onAdd }) {
           <div>
             <h2 className="text-lg font-medium text-gray-800 mb-2">{product.name}</h2>
             <div className="flex items-center gap-2 mb-3 text-sm">
-              <span className="text-yellow-500">★ {product.rating}</span>
+              <span className="text-yellow-600 flex items-center gap-1"><Star1 size={14} variant="Bold" color="#f5c518" /> {product.rating}</span>
               <span className="text-gray-400">|</span>
               <span className="text-gray-500">Đã bán {product.sold}</span>
               {product.mall && <span className="bg-shopee-orange text-white text-[10px] px-1 rounded-sm">Mall</span>}
@@ -32,9 +36,9 @@ export default function ProductModal({ product, onClose, onAdd }) {
               <div className="flex gap-2 mb-1"><span className="w-20 text-gray-400">Vận chuyển</span><span>Freeship toàn quốc</span></div>
               <div className="flex gap-2 mb-1"><span className="w-20 text-gray-400">Số lượng</span>
                 <div className="flex items-center border border-gray-300">
-                  <button className="px-2 py-0.5 hover:bg-gray-100">−</button>
+                  <button className="px-2 py-0.5 hover:bg-gray-100"><Minus size={12} variant="Linear" color="currentColor" /></button>
                   <span className="px-3 py-0.5 border-x border-gray-300">1</span>
-                  <button className="px-2 py-0.5 hover:bg-gray-100">+</button>
+                  <button className="px-2 py-0.5 hover:bg-gray-100"><Add size={12} variant="Linear" color="currentColor" /></button>
                 </div>
               </div>
             </div>

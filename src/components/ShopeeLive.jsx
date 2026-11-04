@@ -1,3 +1,5 @@
+import SeeAll from './SeeAll.jsx';
+
 export default function ShopeeLive() {
   const lives = [
     { title: 'Live Sale 12.12 - Giảm đến 70%', viewers: '12.3K', img: 'https://picsum.photos/seed/live1/240/320' },
@@ -11,7 +13,7 @@ export default function ShopeeLive() {
       <div className="flex items-center gap-3 mb-3">
         <span className="text-base font-medium text-gray-600 border-b-2 border-shopee-orange pb-1">SHOPEE LIVE</span>
         <span className="text-xs text-gray-400">Xem live · Mua ngay · Nhận voucher</span>
-        <a href="/live" className="ml-auto text-shopee-orange text-xs">Xem tất cả ›</a>
+        <SeeAll to="/live" />
       </div>
       <div className="flex gap-2 overflow-x-auto scrollbar-hide">
         {lives.map((l) => (

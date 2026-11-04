@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Marquee from 'react-fast-marquee';
 import { slugify } from '../lib/slugify.js';
 
 const MEGA = {
@@ -21,34 +22,60 @@ const MEGA = {
   'Túi Ví Nữ': ['Túi xách', 'Balo', 'Ví', 'Túi đeo chéo'],
 };
 
-// slugify imported from ../lib/slugify.js
-
 export default function CategoryNav() {
-  const [active, setActive] = useState(null);
+  const [mega, setMega] = useState(null);
+  const closeTimer = useRef(null);
   const cats = Object.keys(MEGA);
+
+  const open = (cat, e) => {
+    clearTimeout(closeTimer.current);
+    const r = e.currentTarget.getBoundingClientRect();
+    const width = 320;
+    const left = Math.min(Math.max(8, r.left), window.innerWidth - width - 8);
+    setMega({ cat, left, top: r.bottom + 2 });
+  };
+
+  const scheduleClose = () => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setMega(null), 160);
+  };
+
   return (
     <nav className="bg-white border-b border-gray-200 relative">
-      <div className="container flex gap-2 overflow-x-auto px-2 h-10 items-center scrollbar-hide">
-        {cats.map((c) => (
-          <div
-            key={c}
-            className="relative"
-            onMouseEnter={() => setActive(c)}
-            onMouseLeave={() => setActive(null)}
-          >
-            <Link to={`/category/${slugify(c)}`} className="text-[13px] text-gray-600 px-1.5 py-2 whitespace-nowrap hover:text-shopee-orange block">
+      <div className="container px-2 py-1.5">
+        <Marquee pauseOnHover speed={26} gradient={false} autoFill className="overflow-hidden">
+          {cats.map((c) => (
+            <Link
+              key={c}
+              to={`/category/${slugify(c)}`}
+              onMouseEnter={(e) => open(c, e)}
+              onMouseLeave={scheduleClose}
+              className="text-[13px] text-gray-600 px-3 py-2 whitespace-nowrap hover:text-shopee-orange block shrink-0"
+            >
               {c}
             </Link>
-            {active === c && (
-              <div className="absolute top-full left-0 bg-white shadow-xl rounded z-50 p-4 min-w-[260px] grid grid-cols-2 gap-1">
-                {MEGA[c].map((sub) => (
-                  <Link key={sub} to={`/search?q=${encodeURIComponent(sub)}`} className="text-xs text-gray-600 hover:text-shopee-orange py-1">{sub}</Link>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
+          ))}
+        </Marquee>
       </div>
+
+      {mega && (
+        <div
+          onMouseEnter={() => clearTimeout(closeTimer.current)}
+          onMouseLeave={scheduleClose}
+          style={{ left: mega.left, top: mega.top, width: 320 }}
+          className="fixed bg-white shadow-xl rounded border border-gray-100 z-[60] p-4 grid grid-cols-2 gap-1"
+        >
+          {MEGA[mega.cat].map((sub) => (
+            <Link
+              key={sub}
+              to={`/search?q=${encodeURIComponent(sub)}`}
+              className="text-xs text-gray-600 hover:text-shopee-orange py-1"
+            >
+              {sub}
+            </Link>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }

@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext.jsx';
 import LazyImage from './LazyImage.jsx';
+import { Star1, Location, SearchNormal1 } from 'iconsax-react';
 
 export default function ProductCard({ product, index = 0 }) {
   const navigate = useNavigate();
@@ -36,7 +37,8 @@ export default function ProductCard({ product, index = 0 }) {
         </div>
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition flex items-end justify-center opacity-0 group-hover:opacity-100">
-          <div className="w-full bg-white/90 py-1.5 text-center text-xs text-gray-700 hover:text-shopee-orange">
+          <div className="w-full bg-white/90 py-1.5 text-center text-xs text-gray-700 hover:text-shopee-orange flex items-center justify-center gap-1">
+            <SearchNormal1 size={13} variant="Linear" color="currentColor" />
             Tìm sản phẩm tương tự
           </div>
         </div>
@@ -52,12 +54,15 @@ export default function ProductCard({ product, index = 0 }) {
         </div>
         <div className="flex justify-between items-center text-[11px] text-gray-400 mt-1.5">
           <span className="flex items-center gap-0.5">
-            <span className="text-yellow-500">★</span> {product.rating}
+            <Star1 size={12} variant="Bold" color="#f5c518" /> {product.rating}
           </span>
           <span>Đã bán {product.sold}</span>
         </div>
         {product.location && (
-          <div className="text-[10px] text-gray-400 mt-1 truncate">📍 {product.location}</div>
+          <div className="text-[10px] text-gray-400 mt-1 truncate flex items-center gap-0.5">
+            <Location size={11} variant="Linear" color="currentColor" className="shrink-0" />
+            {product.location}
+          </div>
         )}
       </div>
     </motion.div>

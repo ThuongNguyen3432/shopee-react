@@ -6,6 +6,7 @@ import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 import { supabase, isSupabaseConfigured } from '../lib/supabase.js';
+import { TickCircle } from 'iconsax-react';
 
 const PAYPAL_CLIENT_ID = import.meta.env.VITE_PAYPAL_CLIENT_ID || 'sb';
 
@@ -75,7 +76,9 @@ export default function Checkout() {
     return (
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
         <div className="bg-white rounded-sm p-8 text-center shadow-sm max-w-md">
-          <div className="text-5xl mb-3">✅</div>
+          <div className="text-green-500 mb-3 flex justify-center">
+            <TickCircle size={56} variant="Bold" color="#22c55e" />
+          </div>
           <h1 className="text-xl font-bold text-gray-800 mb-2">Thanh toán thành công!</h1>
           <p className="text-gray-500 text-sm mb-4">Cảm ơn bạn đã mua hàng. Đơn hàng đang được xử lý.</p>
           <button onClick={() => navigate('/')} className="bg-shopee-orange text-white px-6 py-2 rounded-sm text-sm hover:bg-shopee-red">Về trang chủ</button>

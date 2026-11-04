@@ -21,6 +21,23 @@ export default function Settings() {
     <div className="space-y-4">
       <h1 className="text-xl font-bold text-gray-800">Cài đặt</h1>
 
+      <Card title="Gửi email xác thực (Gmail SMTP)">
+        <div className="text-sm space-y-2">
+          <p className="text-gray-500 text-xs">
+            Để gửi email xác thực từ Gmail của bạn, vào Supabase Dashboard → Project Settings → Auth → SMTP Settings và điền:
+          </p>
+          <pre className="bg-gray-900 text-gray-100 text-xs p-3 rounded-sm overflow-x-auto whitespace-pre-wrap">{`SMTP Host: smtp.gmail.com
+SMTP Port: 587
+SMTP User: thuongnguyen01685@gmail.com
+SMTP Password: <App Password 16 ký tự (tạo tại myaccount.google.com/apppasswords)>
+Sender email: thuongnguyen01685@gmail.com
+Sender name: Shopee`}</pre>
+          <p className="text-gray-500 text-xs">
+            Bật "Confirm email" trong Authentication → Providers → Email. Sau đó đăng ký sẽ gửi email xác thực.
+          </p>
+        </div>
+      </Card>
+
       <Card title="Kết nối Supabase">
         <div className="text-sm space-y-2">
           <div>Trạng thái: {isSupabaseConfigured ? <span className="text-green-600 font-medium">Đã kết nối</span> : <span className="text-yellow-600 font-medium">Chưa cấu hình (đang dùng dữ liệu local)</span>}</div>

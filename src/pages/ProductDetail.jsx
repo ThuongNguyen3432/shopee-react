@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { ShoppingCart, Star1, Location, Minus, Add } from 'iconsax-react';
 import { useCart } from '../context/CartContext.jsx';
 import { supabase, isSupabaseConfigured } from '../lib/supabase.js';
 import { store } from '../admin/store.js';
@@ -103,7 +104,7 @@ export default function ProductDetail() {
           <div>
             <h1 className="text-lg font-medium text-gray-800 leading-snug mb-2">{product.name}</h1>
             <div className="flex items-center gap-3 text-sm mb-3 flex-wrap">
-              <span className="text-yellow-500">★ {product.rating}</span>
+              <span className="text-yellow-600 flex items-center gap-1"><Star1 size={15} variant="Bold" color="#f5c518" /> {product.rating}</span>
               <span className="text-gray-400">|</span>
               <span className="text-gray-500">{product.sold} đã bán</span>
               {product.mall && <span className="bg-shopee-orange text-white text-[10px] px-1.5 py-0.5 rounded-sm font-bold">Mall</span>}
@@ -111,7 +112,7 @@ export default function ProductDetail() {
             {product.location && (
               <div className="flex items-center gap-2 text-sm mb-3">
                 <span className="text-gray-500 w-24 shrink-0">Vị trí</span>
-                <span className="text-gray-700">📍 {product.location}</span>
+                <span className="text-gray-700 flex items-center gap-1"><Location size={14} variant="Linear" color="currentColor" /> {product.location}</span>
               </div>
             )}
 
@@ -138,9 +139,9 @@ export default function ProductDetail() {
             <div className="flex items-center gap-3 mb-4">
               <span className="text-gray-500 text-sm w-24 shrink-0">Số lượng</span>
               <div className="flex items-center border border-gray-300 rounded-sm">
-                <button onClick={() => setQty((q) => Math.max(1, q - 1))} className="px-3 py-1.5 hover:bg-gray-100">−</button>
+                <button onClick={() => setQty((q) => Math.max(1, q - 1))} className="px-3 py-1.5 hover:bg-gray-100"><Minus size={12} variant="Linear" color="currentColor" /></button>
                 <span className="px-4 py-1.5 border-x border-gray-300 text-sm">{qty}</span>
-                <button onClick={() => setQty((q) => q + 1)} className="px-3 py-1.5 hover:bg-gray-100">+</button>
+                <button onClick={() => setQty((q) => q + 1)} className="px-3 py-1.5 hover:bg-gray-100"><Add size={12} variant="Linear" color="currentColor" /></button>
               </div>
               <span className="text-xs text-gray-400">{product.stock} sản phẩm có sẵn</span>
             </div>
@@ -151,7 +152,8 @@ export default function ProductDetail() {
                 onClick={() => { for (let i = 0; i < qty; i++) add(product); }}
                 className="flex-1 border border-shopee-orange text-shopee-orange py-3 rounded-sm hover:bg-shopee-orange-light text-sm font-medium"
               >
-                🛒 Thêm vào giỏ hàng
+                <ShoppingCart size={18} variant="Linear" color="currentColor" />
+                Thêm vào giỏ hàng
               </button>
               <button
                 onClick={() => { for (let i = 0; i < qty; i++) add(product); navigate('/checkout'); }}

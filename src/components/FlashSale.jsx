@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import LazyImage from './LazyImage.jsx';
+import SeeAll from './SeeAll.jsx';
 
 import { FLASH_PRODUCTS as flashProducts } from '../data/flashSales.js';
 
@@ -25,7 +26,7 @@ export default function FlashSale() {
             </span>
           ))}
         </div>
-        <a href="/flash-sale" className="ml-auto text-shopee-orange text-sm">Xem tất cả ›</a>
+        <SeeAll to="/flash-sale" />
       </div>
       <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-2">
         {flashProducts.map((p) => (
