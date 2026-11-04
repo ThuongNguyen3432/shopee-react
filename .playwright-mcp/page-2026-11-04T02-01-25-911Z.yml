@@ -1,0 +1,28 @@
+- generic [ref=f72e4]:
+  - heading "Thanh toán" [level=1] [ref=f72e5]
+  - generic [ref=f72e6]:
+    - generic [ref=f72e7]:
+      - heading "Đơn hàng (2 sản phẩm)" [level=2] [ref=f72e8]
+      - generic [ref=f72e9]:
+        - generic [ref=f72e10]:
+          - img "Tai nghe Bluetooth 5.3 không dây" [ref=f72e11]
+          - generic [ref=f72e12]:
+            - generic [ref=f72e13]: Tai nghe Bluetooth 5.3 không dây
+            - generic [ref=f72e14]: x1
+          - generic [ref=f72e15]: 49.000₫
+        - generic [ref=f72e16]:
+          - img "Áo thun nam cotton basic form rộng" [ref=f72e17]
+          - generic [ref=f72e18]:
+            - generic [ref=f72e19]: Áo thun nam cotton basic form rộng
+            - generic [ref=f72e20]: x2
+          - generic [ref=f72e21]: 158.000₫
+      - generic [ref=f72e22]:
+        - generic [ref=f72e23]: Tổng cộng
+        - generic [ref=f72e24]: 207.000₫
+    - generic [ref=f72e25]:
+      - heading "Thanh toán qua PayPal" [level=2] [ref=f72e26]
+      - generic [ref=f72e27]:
+        - text: Bạn chưa đăng nhập.
+        - button "Đăng nhập" [ref=f72e28] [cursor=pointer]
+        - text: để lưu đơn hàng.
+      - paragraph [ref=f72e29]: "* Tỷ giá quy đổi sang USD chỉ mang tính minh họa (1 USD ≈ 25.000₫)."

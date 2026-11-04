@@ -1,0 +1,626 @@
+- generic [ref=f43e3]:
+  - generic [ref=f43e5]:
+    - generic [ref=f43e6]:
+      - link "Kênh Người Bán" [ref=f43e7] [cursor=pointer]:
+        - /url: "#"
+      - link "Trở thành Người bán Shopee" [ref=f43e8] [cursor=pointer]:
+        - /url: "#"
+      - link "Tải ứng dụng" [ref=f43e9] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f43e10]:
+        - text: Kết nối
+        - link "Facebook" [ref=f43e11] [cursor=pointer]:
+          - /url: "#"
+        - link "Instagram" [ref=f43e14] [cursor=pointer]:
+          - /url: "#"
+    - generic [ref=f43e17]:
+      - button "🔔 Thông Báo 5" [ref=f43e18] [cursor=pointer]:
+        - text: 🔔 Thông Báo
+        - generic [ref=f43e19]: "5"
+      - link "❓ Trợ Giúp" [ref=f43e20] [cursor=pointer]:
+        - /url: "#"
+      - link "🌐 Tiếng Việt ▾" [ref=f43e21] [cursor=pointer]:
+        - /url: "#"
+        - text: 🌐 Tiếng Việt
+        - generic [ref=f43e22]: ▾
+      - button "Đăng Nhập" [ref=f43e23] [cursor=pointer]
+      - link "Đăng Ký" [ref=f43e24] [cursor=pointer]:
+        - /url: "#"
+  - banner [ref=f43e25]:
+    - generic [ref=f43e26]:
+      - link "Shopee" [ref=f43e27] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f43e35]:
+        - generic [ref=f43e36]:
+          - button "Tất cả ▾" [ref=f43e38] [cursor=pointer]:
+            - text: Tất cả
+            - generic [ref=f43e39]: ▾
+          - textbox "Tìm kiếm sản phẩm, thương hiệu và tên shop" [ref=f43e40]
+          - button [ref=f43e41] [cursor=pointer]
+        - generic [ref=f43e45]:
+          - link "Áo thun nam" [ref=f43e46] [cursor=pointer]:
+            - /url: "#"
+          - link "Tai nghe bluetooth" [ref=f43e47] [cursor=pointer]:
+            - /url: "#"
+          - link "Dép nữ" [ref=f43e48] [cursor=pointer]:
+            - /url: "#"
+          - link "Balo laptop" [ref=f43e49] [cursor=pointer]:
+            - /url: "#"
+          - link "Son môi" [ref=f43e50] [cursor=pointer]:
+            - /url: "#"
+          - link "Ốp lưng" [ref=f43e51] [cursor=pointer]:
+            - /url: "#"
+      - button "3" [ref=f43e53] [cursor=pointer]
+  - navigation [ref=f43e59]:
+    - generic [ref=f43e60]:
+      - link "Thời Trang Nam" [ref=f43e62] [cursor=pointer]:
+        - /url: "#"
+      - link "Điện Thoại & Phụ Kiện" [ref=f43e64] [cursor=pointer]:
+        - /url: "#"
+      - link "Thiết Bị Điện Tử" [ref=f43e66] [cursor=pointer]:
+        - /url: "#"
+      - link "Máy Tính & Laptop" [ref=f43e68] [cursor=pointer]:
+        - /url: "#"
+      - link "Máy Ảnh & Quay Phim" [ref=f43e70] [cursor=pointer]:
+        - /url: "#"
+      - link "Đồng Hồ" [ref=f43e72] [cursor=pointer]:
+        - /url: "#"
+      - link "Giày Dép Nam" [ref=f43e74] [cursor=pointer]:
+        - /url: "#"
+      - link "Thiết Bị Gia Dụng" [ref=f43e76] [cursor=pointer]:
+        - /url: "#"
+      - link "Thể Thao & Du Lịch" [ref=f43e78] [cursor=pointer]:
+        - /url: "#"
+      - link "Ô Tô & Xe Máy" [ref=f43e80] [cursor=pointer]:
+        - /url: "#"
+      - link "Mẹ & Bé" [ref=f43e82] [cursor=pointer]:
+        - /url: "#"
+      - link "Nhà Cửa & Đời Sống" [ref=f43e84] [cursor=pointer]:
+        - /url: "#"
+      - link "Sắc Đẹp" [ref=f43e86] [cursor=pointer]:
+        - /url: "#"
+      - link "Sức Khỏe" [ref=f43e88] [cursor=pointer]:
+        - /url: "#"
+      - link "Giày Dép Nữ" [ref=f43e90] [cursor=pointer]:
+        - /url: "#"
+      - link "Túi Ví Nữ" [ref=f43e92] [cursor=pointer]:
+        - /url: "#"
+  - main [ref=f43e93]:
+    - generic [ref=f43e94]:
+      - generic [ref=f43e95]:
+        - generic [ref=f43e96]:
+          - img "banner0" [ref=f43e98]
+          - img "banner1" [ref=f43e100]
+          - img "banner2" [ref=f43e102]
+        - generic [ref=f43e103]:
+          - button [ref=f43e104] [cursor=pointer]
+          - button [ref=f43e105] [cursor=pointer]
+          - button [ref=f43e106] [cursor=pointer]
+      - generic [ref=f43e107]:
+        - img "side1" [ref=f43e109]
+        - img "side2" [ref=f43e111]
+    - generic [ref=f43e112]:
+      - generic [ref=f43e113]: Voucher của bạn
+      - generic [ref=f43e114]:
+        - generic [ref=f43e115] [cursor=pointer]:
+          - generic [ref=f43e116]: Giảm 50K
+          - generic [ref=f43e117]: Đơn từ 200K
+        - generic [ref=f43e118] [cursor=pointer]:
+          - generic [ref=f43e119]: Freeship Xtra
+          - generic [ref=f43e120]: Toàn quốc
+        - generic [ref=f43e121] [cursor=pointer]:
+          - generic [ref=f43e122]: Giảm 15%
+          - generic [ref=f43e123]: Shopee Mall
+        - generic [ref=f43e124] [cursor=pointer]:
+          - generic [ref=f43e125]: Giảm 30K
+          - generic [ref=f43e126]: Đơn từ 99K
+        - generic [ref=f43e127] [cursor=pointer]:
+          - generic [ref=f43e128]: Hoàn xu 10%
+          - generic [ref=f43e129]: Mọi đơn
+      - link "Xem tất cả voucher ›" [ref=f43e130] [cursor=pointer]:
+        - /url: "#"
+    - generic [ref=f43e132]:
+      - generic [ref=f43e133] [cursor=pointer]:
+        - img "Thời Trang Nam" [ref=f43e134]
+        - generic [ref=f43e135]: Thời Trang Nam
+      - generic [ref=f43e136] [cursor=pointer]:
+        - img "Điện Thoại" [ref=f43e137]
+        - generic [ref=f43e138]: Điện Thoại
+      - generic [ref=f43e139] [cursor=pointer]:
+        - img "Thiết Bị Điện Tử" [ref=f43e140]
+        - generic [ref=f43e141]: Thiết Bị Điện Tử
+      - generic [ref=f43e142] [cursor=pointer]:
+        - img "Máy Tính & Laptop" [ref=f43e143]
+        - generic [ref=f43e144]: Máy Tính & Laptop
+      - generic [ref=f43e145] [cursor=pointer]:
+        - img "Máy Ảnh" [ref=f43e146]
+        - generic [ref=f43e147]: Máy Ảnh
+      - generic [ref=f43e148] [cursor=pointer]:
+        - img "Đồng Hồ" [ref=f43e149]
+        - generic [ref=f43e150]: Đồng Hồ
+      - generic [ref=f43e151] [cursor=pointer]:
+        - img "Giày Dép Nam" [ref=f43e152]
+        - generic [ref=f43e153]: Giày Dép Nam
+      - generic [ref=f43e154] [cursor=pointer]:
+        - img "Thiết Bị Gia Dụng" [ref=f43e155]
+        - generic [ref=f43e156]: Thiết Bị Gia Dụng
+      - generic [ref=f43e157] [cursor=pointer]:
+        - img "Thể Thao" [ref=f43e158]
+        - generic [ref=f43e159]: Thể Thao
+      - generic [ref=f43e160] [cursor=pointer]:
+        - img "Ô Tô & Xe Máy" [ref=f43e161]
+        - generic [ref=f43e162]: Ô Tô & Xe Máy
+      - generic [ref=f43e163] [cursor=pointer]:
+        - img "Mẹ & Bé" [ref=f43e164]
+        - generic [ref=f43e165]: Mẹ & Bé
+      - generic [ref=f43e166] [cursor=pointer]:
+        - img "Nhà Cửa" [ref=f43e167]
+        - generic [ref=f43e168]: Nhà Cửa
+      - generic [ref=f43e169] [cursor=pointer]:
+        - img "Sắc Đẹp" [ref=f43e170]
+        - generic [ref=f43e171]: Sắc Đẹp
+      - generic [ref=f43e172] [cursor=pointer]:
+        - img "Sức Khỏe" [ref=f43e173]
+        - generic [ref=f43e174]: Sức Khỏe
+      - generic [ref=f43e175] [cursor=pointer]:
+        - img "Giày Dép Nữ" [ref=f43e176]
+        - generic [ref=f43e177]: Giày Dép Nữ
+      - generic [ref=f43e178] [cursor=pointer]:
+        - img "Túi Ví Nữ" [ref=f43e179]
+        - generic [ref=f43e180]: Túi Ví Nữ
+      - generic [ref=f43e181] [cursor=pointer]:
+        - img "Phụ Kiện" [ref=f43e182]
+        - generic [ref=f43e183]: Phụ Kiện
+      - generic [ref=f43e184] [cursor=pointer]:
+        - img "Bách Hóa" [ref=f43e185]
+        - generic [ref=f43e186]: Bách Hóa
+      - generic [ref=f43e187] [cursor=pointer]:
+        - img "Nhà Sách" [ref=f43e188]
+        - generic [ref=f43e189]: Nhà Sách
+      - generic [ref=f43e190] [cursor=pointer]:
+        - img "Thời Trang Nữ" [ref=f43e191]
+        - generic [ref=f43e192]: Thời Trang Nữ
+    - generic [ref=f43e193]:
+      - generic [ref=f43e194]:
+        - generic [ref=f43e195]: FLASH SALE
+        - generic [ref=f43e196]:
+          - generic [ref=f43e197]:
+            - generic [ref=f43e198]: "02"
+            - generic [ref=f43e199]: ":"
+          - generic [ref=f43e200]:
+            - generic [ref=f43e201]: "15"
+            - generic [ref=f43e202]: ":"
+          - generic [ref=f43e203]: "48"
+        - link "Xem tất cả ›" [ref=f43e205] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=f43e206]:
+        - generic [ref=f43e207] [cursor=pointer]:
+          - generic [ref=f43e208]:
+            - img "Tai nghe Bluetooth 5.3 không dây" [ref=f43e211]
+            - generic [ref=f43e212]: "-75%"
+          - generic [ref=f43e213]:
+            - generic [ref=f43e214]: Tai nghe Bluetooth 5.3 không dây
+            - generic [ref=f43e215]:
+              - generic [ref=f43e216]: ₫
+              - generic [ref=f43e217]: "49.000"
+              - generic [ref=f43e218]: 199.000₫
+            - generic [ref=f43e219]: Đã bán 82%
+        - generic [ref=f43e222] [cursor=pointer]:
+          - generic [ref=f43e223]:
+            - img "Áo thun nam cotton basic form rộng" [ref=f43e226]
+            - generic [ref=f43e227]: "-50%"
+          - generic [ref=f43e228]:
+            - generic [ref=f43e229]: Áo thun nam cotton basic form rộng
+            - generic [ref=f43e230]:
+              - generic [ref=f43e231]: ₫
+              - generic [ref=f43e232]: "79.000"
+              - generic [ref=f43e233]: 159.000₫
+            - generic [ref=f43e234]: Đã bán 65%
+        - generic [ref=f43e237] [cursor=pointer]:
+          - generic [ref=f43e238]:
+            - img "Dép nữ quai ngang chống trượt" [ref=f43e241]
+            - generic [ref=f43e242]: "-65%"
+          - generic [ref=f43e243]:
+            - generic [ref=f43e244]: Dép nữ quai ngang chống trượt
+            - generic [ref=f43e245]:
+              - generic [ref=f43e246]: ₫
+              - generic [ref=f43e247]: "35.000"
+              - generic [ref=f43e248]: 99.000₫
+            - generic [ref=f43e249]: Đã bán 1k+
+        - generic [ref=f43e252] [cursor=pointer]:
+          - generic [ref=f43e253]:
+            - img "Ốp lưng iPhone 15 trong suốt" [ref=f43e256]
+            - generic [ref=f43e257]: "-68%"
+          - generic [ref=f43e258]:
+            - generic [ref=f43e259]: Ốp lưng iPhone 15 trong suốt
+            - generic [ref=f43e260]:
+              - generic [ref=f43e261]: ₫
+              - generic [ref=f43e262]: "19.000"
+              - generic [ref=f43e263]: 59.000₫
+            - generic [ref=f43e264]: Đã bán 47%
+        - generic [ref=f43e267] [cursor=pointer]:
+          - generic [ref=f43e268]:
+            - img "Son môi lì lâu trôi 3CE" [ref=f43e271]
+            - generic [ref=f43e272]: "-57%"
+          - generic [ref=f43e273]:
+            - generic [ref=f43e274]: Son môi lì lâu trôi 3CE
+            - generic [ref=f43e275]:
+              - generic [ref=f43e276]: ₫
+              - generic [ref=f43e277]: "129.000"
+              - generic [ref=f43e278]: 299.000₫
+            - generic [ref=f43e279]: Đã bán 73%
+        - generic [ref=f43e282] [cursor=pointer]:
+          - generic [ref=f43e283]:
+            - img "Balo laptop chống nước 15.6\"" [ref=f43e286]
+            - generic [ref=f43e287]: "-53%"
+          - generic [ref=f43e288]:
+            - generic [ref=f43e289]: Balo laptop chống nước 15.6"
+            - generic [ref=f43e290]:
+              - generic [ref=f43e291]: ₫
+              - generic [ref=f43e292]: "189.000"
+              - generic [ref=f43e293]: 399.000₫
+            - generic [ref=f43e294]: Đã bán 58%
+        - generic [ref=f43e297] [cursor=pointer]:
+          - generic [ref=f43e298]:
+            - img "Bình giữ nhiệt inox 500ml" [ref=f43e301]
+            - generic [ref=f43e302]: "-54%"
+          - generic [ref=f43e303]:
+            - generic [ref=f43e304]: Bình giữ nhiệt inox 500ml
+            - generic [ref=f43e305]:
+              - generic [ref=f43e306]: ₫
+              - generic [ref=f43e307]: "69.000"
+              - generic [ref=f43e308]: 149.000₫
+            - generic [ref=f43e309]: Đã bán 34%
+        - generic [ref=f43e312] [cursor=pointer]:
+          - generic [ref=f43e313]:
+            - img "Khăn giấy ướt em bé 80 tờ" [ref=f43e316]
+            - generic [ref=f43e317]: "-44%"
+          - generic [ref=f43e318]:
+            - generic [ref=f43e319]: Khăn giấy ướt em bé 80 tờ
+            - generic [ref=f43e320]:
+              - generic [ref=f43e321]: ₫
+              - generic [ref=f43e322]: "25.000"
+              - generic [ref=f43e323]: 45.000₫
+            - generic [ref=f43e324]: Đã bán 88%
+    - generic [ref=f43e327]:
+      - generic [ref=f43e328]:
+        - generic [ref=f43e329]: SHOPEE LIVE
+        - generic [ref=f43e330]: Xem live · Mua ngay · Nhận voucher
+        - link "Xem tất cả ›" [ref=f43e331] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=f43e332]:
+        - generic [ref=f43e333] [cursor=pointer]:
+          - img "Live Sale 12.12 - Giảm đến 70%" [ref=f43e334]
+          - generic [ref=f43e335]: LIVE
+          - generic [ref=f43e337]:
+            - generic [ref=f43e338]: Live Sale 12.12 - Giảm đến 70%
+            - generic [ref=f43e339]: 👁 12.3K đang xem
+        - generic [ref=f43e340] [cursor=pointer]:
+          - img "Review mỹ phẩm hot trend" [ref=f43e341]
+          - generic [ref=f43e342]: LIVE
+          - generic [ref=f43e344]:
+            - generic [ref=f43e345]: Review mỹ phẩm hot trend
+            - generic [ref=f43e346]: 👁 5.1K đang xem
+        - generic [ref=f43e347] [cursor=pointer]:
+          - img "Thời trang nữ deal sốc" [ref=f43e348]
+          - generic [ref=f43e349]: LIVE
+          - generic [ref=f43e351]:
+            - generic [ref=f43e352]: Thời trang nữ deal sốc
+            - generic [ref=f43e353]: 👁 8.7K đang xem
+        - generic [ref=f43e354] [cursor=pointer]:
+          - img "Đồ gia dụng thông minh" [ref=f43e355]
+          - generic [ref=f43e356]: LIVE
+          - generic [ref=f43e358]:
+            - generic [ref=f43e359]: Đồ gia dụng thông minh
+            - generic [ref=f43e360]: 👁 3.2K đang xem
+        - generic [ref=f43e361] [cursor=pointer]:
+          - img "Giày dép sale cuối mùa" [ref=f43e362]
+          - generic [ref=f43e363]: LIVE
+          - generic [ref=f43e365]:
+            - generic [ref=f43e366]: Giày dép sale cuối mùa
+            - generic [ref=f43e367]: 👁 6.9K đang xem
+    - generic [ref=f43e368]:
+      - generic [ref=f43e369]:
+        - generic [ref=f43e370]: SHOPEE MALL
+        - generic [ref=f43e371]: Chính hãng 100% · Hoàn tiền 200% nếu hàng giả · Freeship mọi đơn
+      - generic [ref=f43e372]:
+        - img "mall1" [ref=f43e374]
+        - img "mall2" [ref=f43e376]
+    - generic [ref=f43e377]:
+      - generic [ref=f43e378]:
+        - generic [ref=f43e379]:
+          - button "Gợi ý hôm nay" [ref=f43e380] [cursor=pointer]
+          - button "Flash Sale" [ref=f43e381] [cursor=pointer]
+          - button "Shopee Mall" [ref=f43e382] [cursor=pointer]
+          - button "Xu hướng" [ref=f43e383] [cursor=pointer]
+          - button "Mới nhất" [ref=f43e384] [cursor=pointer]
+        - combobox [ref=f43e385]:
+          - option "Phổ biến" [selected]
+          - 'option "Giá: thấp → cao"'
+          - 'option "Giá: cao → thấp"'
+          - option "Đánh giá"
+      - generic [ref=f43e386]:
+        - generic [ref=f43e387] [cursor=pointer]:
+          - generic [ref=f43e388]:
+            - img "Quần jean nam ống rộng wash xanh" [ref=f43e391]
+            - generic [ref=f43e392]: "-27%"
+            - generic [ref=f43e393]: Yêu thích
+            - generic [ref=f43e394]: Mall
+            - generic [ref=f43e395]:
+              - button "Xem nhanh" [ref=f43e396]
+              - button "+ Giỏ" [ref=f43e397]
+          - generic [ref=f43e398]:
+            - generic [ref=f43e399]: Quần jean nam ống rộng wash xanh
+            - generic [ref=f43e400]:
+              - generic [ref=f43e401]: ₫
+              - generic [ref=f43e402]: "149.000"
+            - generic [ref=f43e403]:
+              - generic [ref=f43e404]: ★ 4.8
+              - generic [ref=f43e405]: Đã bán 2,3k
+        - generic [ref=f43e406] [cursor=pointer]:
+          - generic [ref=f43e407]:
+            - img "Sạc dự phòng 10000mAh PD 20W" [ref=f43e410]
+            - generic [ref=f43e411]: "-34%"
+            - generic [ref=f43e412]: Yêu thích
+            - generic [ref=f43e413]:
+              - button "Xem nhanh" [ref=f43e414]
+              - button "+ Giỏ" [ref=f43e415]
+          - generic [ref=f43e416]:
+            - generic [ref=f43e417]: Sạc dự phòng 10000mAh PD 20W
+            - generic [ref=f43e418]:
+              - generic [ref=f43e419]: ₫
+              - generic [ref=f43e420]: "159.000"
+            - generic [ref=f43e421]:
+              - generic [ref=f43e422]: ★ 4.9
+              - generic [ref=f43e423]: Đã bán 8,1k
+        - generic [ref=f43e424] [cursor=pointer]:
+          - generic [ref=f43e425]:
+            - img "Váy maxi hoa nhí vintage" [ref=f43e428]
+            - generic [ref=f43e429]: "-41%"
+            - generic [ref=f43e430]: Yêu thích
+            - generic [ref=f43e431]: Mall
+            - generic [ref=f43e432]:
+              - button "Xem nhanh" [ref=f43e433]
+              - button "+ Giỏ" [ref=f43e434]
+          - generic [ref=f43e435]:
+            - generic [ref=f43e436]: Váy maxi hoa nhí vintage
+            - generic [ref=f43e437]:
+              - generic [ref=f43e438]: ₫
+              - generic [ref=f43e439]: "199.000"
+            - generic [ref=f43e440]:
+              - generic [ref=f43e441]: ★ 4.7
+              - generic [ref=f43e442]: Đã bán 1,2k
+        - generic [ref=f43e443] [cursor=pointer]:
+          - generic [ref=f43e444]:
+            - img "Kem chống nắng SPF50+ PA++++" [ref=f43e447]
+            - generic [ref=f43e448]: "-48%"
+            - generic [ref=f43e449]: Yêu thích
+            - generic [ref=f43e450]:
+              - button "Xem nhanh" [ref=f43e451]
+              - button "+ Giỏ" [ref=f43e452]
+          - generic [ref=f43e453]:
+            - generic [ref=f43e454]: Kem chống nắng SPF50+ PA++++
+            - generic [ref=f43e455]:
+              - generic [ref=f43e456]: ₫
+              - generic [ref=f43e457]: "89.000"
+            - generic [ref=f43e458]:
+              - generic [ref=f43e459]: ★ 4.8
+              - generic [ref=f43e460]: Đã bán 5,6k
+        - generic [ref=f43e461] [cursor=pointer]:
+          - generic [ref=f43e462]:
+            - img "Giày sneaker nam trắng basic" [ref=f43e465]
+            - generic [ref=f43e466]: "-55%"
+            - generic [ref=f43e467]: Yêu thích
+            - generic [ref=f43e468]: Mall
+            - generic [ref=f43e469]:
+              - button "Xem nhanh" [ref=f43e470]
+              - button "+ Giỏ" [ref=f43e471]
+          - generic [ref=f43e472]:
+            - generic [ref=f43e473]: Giày sneaker nam trắng basic
+            - generic [ref=f43e474]:
+              - generic [ref=f43e475]: ₫
+              - generic [ref=f43e476]: "249.000"
+            - generic [ref=f43e477]:
+              - generic [ref=f43e478]: ★ 4.6
+              - generic [ref=f43e479]: Đã bán 3,4k
+        - generic [ref=f43e480] [cursor=pointer]:
+          - generic [ref=f43e481]:
+            - img "Tai nghe in-ear có dây bass" [ref=f43e484]
+            - generic [ref=f43e485]: "-62%"
+            - generic [ref=f43e486]: Yêu thích
+            - generic [ref=f43e487]:
+              - button "Xem nhanh" [ref=f43e488]
+              - button "+ Giỏ" [ref=f43e489]
+          - generic [ref=f43e490]:
+            - generic [ref=f43e491]: Tai nghe in-ear có dây bass
+            - generic [ref=f43e492]:
+              - generic [ref=f43e493]: ₫
+              - generic [ref=f43e494]: "39.000"
+            - generic [ref=f43e495]:
+              - generic [ref=f43e496]: ★ 4.5
+              - generic [ref=f43e497]: Đã bán 12k
+        - generic [ref=f43e498] [cursor=pointer]:
+          - generic [ref=f43e499]:
+            - img "Bột giặt OMO 4kg hương thơm" [ref=f43e502]
+            - generic [ref=f43e503]: "-69%"
+            - generic [ref=f43e504]: Yêu thích
+            - generic [ref=f43e505]:
+              - button "Xem nhanh" [ref=f43e506]
+              - button "+ Giỏ" [ref=f43e507]
+          - generic [ref=f43e508]:
+            - generic [ref=f43e509]: Bột giặt OMO 4kg hương thơm
+            - generic [ref=f43e510]:
+              - generic [ref=f43e511]: ₫
+              - generic [ref=f43e512]: "175.000"
+            - generic [ref=f43e513]:
+              - generic [ref=f43e514]: ★ 4.9
+              - generic [ref=f43e515]: Đã bán 9,8k
+        - generic [ref=f43e516] [cursor=pointer]:
+          - generic [ref=f43e517]:
+            - img "Nồi chiên không dầu 5.5L" [ref=f43e520]
+            - generic [ref=f43e521]: "-26%"
+            - generic [ref=f43e522]: Yêu thích
+            - generic [ref=f43e523]: Mall
+            - generic [ref=f43e524]:
+              - button "Xem nhanh" [ref=f43e525]
+              - button "+ Giỏ" [ref=f43e526]
+          - generic [ref=f43e527]:
+            - generic [ref=f43e528]: Nồi chiên không dầu 5.5L
+            - generic [ref=f43e529]:
+              - generic [ref=f43e530]: ₫
+              - generic [ref=f43e531]: "499.000"
+            - generic [ref=f43e532]:
+              - generic [ref=f43e533]: ★ 4.7
+              - generic [ref=f43e534]: Đã bán 1,9k
+        - generic [ref=f43e535] [cursor=pointer]:
+          - generic [ref=f43e536]:
+            - img "Áo sơ mi nữ tay dài công sở" [ref=f43e539]
+            - generic [ref=f43e540]: "-33%"
+            - generic [ref=f43e541]: Yêu thích
+            - generic [ref=f43e542]:
+              - button "Xem nhanh" [ref=f43e543]
+              - button "+ Giỏ" [ref=f43e544]
+          - generic [ref=f43e545]:
+            - generic [ref=f43e546]: Áo sơ mi nữ tay dài công sở
+            - generic [ref=f43e547]:
+              - generic [ref=f43e548]: ₫
+              - generic [ref=f43e549]: "129.000"
+            - generic [ref=f43e550]:
+              - generic [ref=f43e551]: ★ 4.8
+              - generic [ref=f43e552]: Đã bán 4,2k
+        - generic [ref=f43e553] [cursor=pointer]:
+          - generic [ref=f43e554]:
+            - img "Chuột không dây silent click" [ref=f43e557]
+            - generic [ref=f43e558]: "-40%"
+            - generic [ref=f43e559]: Yêu thích
+            - generic [ref=f43e560]:
+              - button "Xem nhanh" [ref=f43e561]
+              - button "+ Giỏ" [ref=f43e562]
+          - generic [ref=f43e563]:
+            - generic [ref=f43e564]: Chuột không dây silent click
+            - generic [ref=f43e565]:
+              - generic [ref=f43e566]: ₫
+              - generic [ref=f43e567]: "99.000"
+            - generic [ref=f43e568]:
+              - generic [ref=f43e569]: ★ 4.6
+              - generic [ref=f43e570]: Đã bán 6,7k
+        - generic [ref=f43e571] [cursor=pointer]:
+          - generic [ref=f43e572]:
+            - img "Kính râm nam chống UV400" [ref=f43e575]
+            - generic [ref=f43e576]: "-47%"
+            - generic [ref=f43e577]: Yêu thích
+            - generic [ref=f43e578]:
+              - button "Xem nhanh" [ref=f43e579]
+              - button "+ Giỏ" [ref=f43e580]
+          - generic [ref=f43e581]:
+            - generic [ref=f43e582]: Kính râm nam chống UV400
+            - generic [ref=f43e583]:
+              - generic [ref=f43e584]: ₫
+              - generic [ref=f43e585]: "79.000"
+            - generic [ref=f43e586]:
+              - generic [ref=f43e587]: ★ 4.5
+              - generic [ref=f43e588]: Đã bán 2,1k
+        - generic [ref=f43e589] [cursor=pointer]:
+          - generic [ref=f43e590]:
+            - img "Bình nước thể thao 1L" [ref=f43e593]
+            - generic [ref=f43e594]: "-54%"
+            - generic [ref=f43e595]: Yêu thích
+            - generic [ref=f43e596]:
+              - button "Xem nhanh" [ref=f43e597]
+              - button "+ Giỏ" [ref=f43e598]
+          - generic [ref=f43e599]:
+            - generic [ref=f43e600]: Bình nước thể thao 1L
+            - generic [ref=f43e601]:
+              - generic [ref=f43e602]: ₫
+              - generic [ref=f43e603]: "45.000"
+            - generic [ref=f43e604]:
+              - generic [ref=f43e605]: ★ 4.7
+              - generic [ref=f43e606]: Đã bán 7,3k
+      - button "Xem thêm" [ref=f43e608] [cursor=pointer]
+  - contentinfo [ref=f43e609]:
+    - generic [ref=f43e610]:
+      - generic [ref=f43e611]:
+        - generic [ref=f43e612]:
+          - heading "Chăm sóc khách hàng" [level=4] [ref=f43e613]
+          - link "Trung tâm trợ giúp" [ref=f43e614] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Blog" [ref=f43e615] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Mall" [ref=f43e616] [cursor=pointer]:
+            - /url: "#"
+          - link "Hướng dẫn mua hàng" [ref=f43e617] [cursor=pointer]:
+            - /url: "#"
+          - link "Hướng dẫn bán hàng" [ref=f43e618] [cursor=pointer]:
+            - /url: "#"
+          - link "Ví ShopeePay" [ref=f43e619] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Xu" [ref=f43e620] [cursor=pointer]:
+            - /url: "#"
+          - link "Trả hàng & Hoàn tiền" [ref=f43e621] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=f43e622]:
+          - heading "Về Shopee" [level=4] [ref=f43e623]
+          - link "Giới thiệu về Shopee" [ref=f43e624] [cursor=pointer]:
+            - /url: "#"
+          - link "Tuyển dụng" [ref=f43e625] [cursor=pointer]:
+            - /url: "#"
+          - link "Điều khoản Shopee" [ref=f43e626] [cursor=pointer]:
+            - /url: "#"
+          - link "Chính sách bảo mật" [ref=f43e627] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Mall" [ref=f43e628] [cursor=pointer]:
+            - /url: "#"
+          - link "Kênh Người Bán" [ref=f43e629] [cursor=pointer]:
+            - /url: "#"
+          - link "Flash Sale" [ref=f43e630] [cursor=pointer]:
+            - /url: "#"
+          - link "Liên hệ với chúng tôi" [ref=f43e631] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=f43e632]:
+          - heading "Thanh toán" [level=4] [ref=f43e633]
+          - generic [ref=f43e634]:
+            - generic [ref=f43e635]: Visa
+            - generic [ref=f43e636]: Mastercard
+            - generic [ref=f43e637]: JCB
+            - generic [ref=f43e638]: COD
+            - generic [ref=f43e639]: ShopeePay
+        - generic [ref=f43e640]:
+          - heading "Đơn vị vận chuyển" [level=4] [ref=f43e641]
+          - generic [ref=f43e642]:
+            - generic [ref=f43e643]: GHN
+            - generic [ref=f43e644]: GHTK
+            - generic [ref=f43e645]: Viettel Post
+            - generic [ref=f43e646]: J&T
+            - generic [ref=f43e647]: VNPost
+        - generic [ref=f43e648]:
+          - heading "Theo dõi chúng tôi" [level=4] [ref=f43e649]
+          - link "Facebook" [ref=f43e650] [cursor=pointer]:
+            - /url: "#"
+          - link "Instagram" [ref=f43e651] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=f43e652] [cursor=pointer]:
+            - /url: "#"
+          - link "YouTube" [ref=f43e653] [cursor=pointer]:
+            - /url: "#"
+          - heading "Tải ứng dụng Shopee" [level=4] [ref=f43e654]
+          - generic [ref=f43e655]:
+            - img "qr" [ref=f43e656]
+            - generic [ref=f43e657]:
+              - img "appstore" [ref=f43e658]
+              - img "googleplay" [ref=f43e659]
+      - generic [ref=f43e660]:
+        - generic [ref=f43e661]: © 2025 Shopee. Tất cả các quyền được bảo lưu.
+        - generic [ref=f43e662]:
+          - generic [ref=f43e663]: "Quốc gia & Khu vực:"
+          - link "Singapore" [ref=f43e664] [cursor=pointer]:
+            - /url: "#"
+          - link "Indonesia" [ref=f43e665] [cursor=pointer]:
+            - /url: "#"
+          - link "Thái Lan" [ref=f43e666] [cursor=pointer]:
+            - /url: "#"
+          - link "Malaysia" [ref=f43e667] [cursor=pointer]:
+            - /url: "#"
+          - link "Việt Nam" [ref=f43e668] [cursor=pointer]:
+            - /url: "#"
+          - link "Philippines" [ref=f43e669] [cursor=pointer]:
+            - /url: "#"

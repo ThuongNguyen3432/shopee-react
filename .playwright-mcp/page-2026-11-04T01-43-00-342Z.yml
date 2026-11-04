@@ -1,0 +1,208 @@
+- generic [ref=f45e3]:
+  - generic [ref=f45e5]:
+    - generic [ref=f45e6]:
+      - link "Kênh Người Bán" [ref=f45e7] [cursor=pointer]:
+        - /url: "#"
+      - link "Trở thành Người bán Shopee" [ref=f45e8] [cursor=pointer]:
+        - /url: "#"
+      - link "Tải ứng dụng" [ref=f45e9] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f45e10]:
+        - text: Kết nối
+        - link "Facebook" [ref=f45e11] [cursor=pointer]:
+          - /url: "#"
+        - link "Instagram" [ref=f45e14] [cursor=pointer]:
+          - /url: "#"
+    - generic [ref=f45e17]:
+      - button "🔔 Thông Báo 5" [ref=f45e18] [cursor=pointer]:
+        - text: 🔔 Thông Báo
+        - generic [ref=f45e19]: "5"
+      - link "❓ Trợ Giúp" [ref=f45e20] [cursor=pointer]:
+        - /url: "#"
+      - link "🌐 Tiếng Việt ▾" [ref=f45e21] [cursor=pointer]:
+        - /url: "#"
+        - text: 🌐 Tiếng Việt
+        - generic [ref=f45e22]: ▾
+      - button "Đăng Nhập" [ref=f45e23] [cursor=pointer]
+      - link "Đăng Ký" [ref=f45e24] [cursor=pointer]:
+        - /url: "#"
+  - banner [ref=f45e25]:
+    - generic [ref=f45e26]:
+      - link "Shopee" [ref=f45e27] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f45e35]:
+        - generic [ref=f45e36]:
+          - button "Tất cả ▾" [ref=f45e38] [cursor=pointer]:
+            - text: Tất cả
+            - generic [ref=f45e39]: ▾
+          - textbox "Tìm kiếm sản phẩm, thương hiệu và tên shop" [ref=f45e40]
+          - button [ref=f45e41] [cursor=pointer]
+        - generic [ref=f45e45]:
+          - link "Áo thun nam" [ref=f45e46] [cursor=pointer]:
+            - /url: "#"
+          - link "Tai nghe bluetooth" [ref=f45e47] [cursor=pointer]:
+            - /url: "#"
+          - link "Dép nữ" [ref=f45e48] [cursor=pointer]:
+            - /url: "#"
+          - link "Balo laptop" [ref=f45e49] [cursor=pointer]:
+            - /url: "#"
+          - link "Son môi" [ref=f45e50] [cursor=pointer]:
+            - /url: "#"
+          - link "Ốp lưng" [ref=f45e51] [cursor=pointer]:
+            - /url: "#"
+      - button "3" [ref=f45e53] [cursor=pointer]
+  - generic [ref=f45e59]:
+    - generic [ref=f45e60]:
+      - link "Trang chủ" [ref=f45e61] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f45e62]: /
+      - generic [ref=f45e63]: Thời Trang Nam
+    - generic [ref=f45e64]:
+      - heading "Thời Trang Nam" [level=1] [ref=f45e65]
+      - paragraph [ref=f45e66]: 2 sản phẩm
+    - generic [ref=f45e67]:
+      - link "Thời Trang Nam" [ref=f45e68] [cursor=pointer]:
+        - /url: /category/thoi-trang-nam
+      - link "Điện Thoại & Phụ Kiện" [ref=f45e69] [cursor=pointer]:
+        - /url: /category/dien-thoai-phu-kien
+      - link "Thiết Bị Điện Tử" [ref=f45e70] [cursor=pointer]:
+        - /url: /category/thiet-bi-dien-tu
+      - link "Máy Tính & Laptop" [ref=f45e71] [cursor=pointer]:
+        - /url: /category/may-tinh-laptop
+      - link "Máy Ảnh & Quay Phim" [ref=f45e72] [cursor=pointer]:
+        - /url: /category/may-anh-quay-phim
+      - link "Đồng Hồ" [ref=f45e73] [cursor=pointer]:
+        - /url: /category/dong-ho
+      - link "Giày Dép Nam" [ref=f45e74] [cursor=pointer]:
+        - /url: /category/giay-dep-nam
+      - link "Thiết Bị Gia Dụng" [ref=f45e75] [cursor=pointer]:
+        - /url: /category/thiet-bi-gia-dung
+      - link "Thể Thao & Du Lịch" [ref=f45e76] [cursor=pointer]:
+        - /url: /category/the-thao-du-lich
+      - link "Ô Tô & Xe Máy" [ref=f45e77] [cursor=pointer]:
+        - /url: /category/o-to-xe-may
+      - link "Mẹ & Bé" [ref=f45e78] [cursor=pointer]:
+        - /url: /category/me-be
+      - link "Nhà Cửa & Đời Sống" [ref=f45e79] [cursor=pointer]:
+        - /url: /category/nha-cua-doi-song
+    - generic [ref=f45e81]:
+      - generic [ref=f45e82] [cursor=pointer]:
+        - generic [ref=f45e83]:
+          - img "Quần jean nam ống rộng wash xanh" [ref=f45e86]
+          - generic [ref=f45e87]: "-50%"
+          - generic [ref=f45e88]: Yêu thích
+          - generic [ref=f45e89]: Mall
+          - generic [ref=f45e90]:
+            - button "Xem nhanh" [ref=f45e91]
+            - button "+ Giỏ" [ref=f45e92]
+        - generic [ref=f45e93]:
+          - generic [ref=f45e94]: Quần jean nam ống rộng wash xanh
+          - generic [ref=f45e95]:
+            - generic [ref=f45e96]: ₫
+            - generic [ref=f45e97]: "149.000"
+          - generic [ref=f45e98]:
+            - generic [ref=f45e99]: ★ 4.8
+            - generic [ref=f45e100]: Đã bán 2,3k
+      - generic [ref=f45e101] [cursor=pointer]:
+        - generic [ref=f45e102]:
+          - img "Kính râm nam chống UV400" [ref=f45e105]
+          - generic [ref=f45e106]: "-50%"
+          - generic [ref=f45e107]: Yêu thích
+          - generic [ref=f45e108]:
+            - button "Xem nhanh" [ref=f45e109]
+            - button "+ Giỏ" [ref=f45e110]
+        - generic [ref=f45e111]:
+          - generic [ref=f45e112]: Kính râm nam chống UV400
+          - generic [ref=f45e113]:
+            - generic [ref=f45e114]: ₫
+            - generic [ref=f45e115]: "79.000"
+          - generic [ref=f45e116]:
+            - generic [ref=f45e117]: ★ 4.5
+            - generic [ref=f45e118]: Đã bán 2,1k
+  - contentinfo [ref=f45e119]:
+    - generic [ref=f45e120]:
+      - generic [ref=f45e121]:
+        - generic [ref=f45e122]:
+          - heading "Chăm sóc khách hàng" [level=4] [ref=f45e123]
+          - link "Trung tâm trợ giúp" [ref=f45e124] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Blog" [ref=f45e125] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Mall" [ref=f45e126] [cursor=pointer]:
+            - /url: "#"
+          - link "Hướng dẫn mua hàng" [ref=f45e127] [cursor=pointer]:
+            - /url: "#"
+          - link "Hướng dẫn bán hàng" [ref=f45e128] [cursor=pointer]:
+            - /url: "#"
+          - link "Ví ShopeePay" [ref=f45e129] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Xu" [ref=f45e130] [cursor=pointer]:
+            - /url: "#"
+          - link "Trả hàng & Hoàn tiền" [ref=f45e131] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=f45e132]:
+          - heading "Về Shopee" [level=4] [ref=f45e133]
+          - link "Giới thiệu về Shopee" [ref=f45e134] [cursor=pointer]:
+            - /url: "#"
+          - link "Tuyển dụng" [ref=f45e135] [cursor=pointer]:
+            - /url: "#"
+          - link "Điều khoản Shopee" [ref=f45e136] [cursor=pointer]:
+            - /url: "#"
+          - link "Chính sách bảo mật" [ref=f45e137] [cursor=pointer]:
+            - /url: "#"
+          - link "Shopee Mall" [ref=f45e138] [cursor=pointer]:
+            - /url: "#"
+          - link "Kênh Người Bán" [ref=f45e139] [cursor=pointer]:
+            - /url: "#"
+          - link "Flash Sale" [ref=f45e140] [cursor=pointer]:
+            - /url: "#"
+          - link "Liên hệ với chúng tôi" [ref=f45e141] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=f45e142]:
+          - heading "Thanh toán" [level=4] [ref=f45e143]
+          - generic [ref=f45e144]:
+            - generic [ref=f45e145]: Visa
+            - generic [ref=f45e146]: Mastercard
+            - generic [ref=f45e147]: JCB
+            - generic [ref=f45e148]: COD
+            - generic [ref=f45e149]: ShopeePay
+        - generic [ref=f45e150]:
+          - heading "Đơn vị vận chuyển" [level=4] [ref=f45e151]
+          - generic [ref=f45e152]:
+            - generic [ref=f45e153]: GHN
+            - generic [ref=f45e154]: GHTK
+            - generic [ref=f45e155]: Viettel Post
+            - generic [ref=f45e156]: J&T
+            - generic [ref=f45e157]: VNPost
+        - generic [ref=f45e158]:
+          - heading "Theo dõi chúng tôi" [level=4] [ref=f45e159]
+          - link "Facebook" [ref=f45e160] [cursor=pointer]:
+            - /url: "#"
+          - link "Instagram" [ref=f45e161] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=f45e162] [cursor=pointer]:
+            - /url: "#"
+          - link "YouTube" [ref=f45e163] [cursor=pointer]:
+            - /url: "#"
+          - heading "Tải ứng dụng Shopee" [level=4] [ref=f45e164]
+          - generic [ref=f45e165]:
+            - img "qr" [ref=f45e166]
+            - generic [ref=f45e167]:
+              - img "appstore" [ref=f45e168]
+              - img "googleplay" [ref=f45e169]
+      - generic [ref=f45e170]:
+        - generic [ref=f45e171]: © 2025 Shopee. Tất cả các quyền được bảo lưu.
+        - generic [ref=f45e172]:
+          - generic [ref=f45e173]: "Quốc gia & Khu vực:"
+          - link "Singapore" [ref=f45e174] [cursor=pointer]:
+            - /url: "#"
+          - link "Indonesia" [ref=f45e175] [cursor=pointer]:
+            - /url: "#"
+          - link "Thái Lan" [ref=f45e176] [cursor=pointer]:
+            - /url: "#"
+          - link "Malaysia" [ref=f45e177] [cursor=pointer]:
+            - /url: "#"
+          - link "Việt Nam" [ref=f45e178] [cursor=pointer]:
+            - /url: "#"
+          - link "Philippines" [ref=f45e179] [cursor=pointer]:
+            - /url: "#"

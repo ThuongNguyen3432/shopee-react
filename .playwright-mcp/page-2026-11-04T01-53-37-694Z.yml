@@ -1,0 +1,191 @@
+- generic [ref=f61e3]:
+  - generic [ref=f61e5]:
+    - generic [ref=f61e6]:
+      - link "Kênh Người Bán" [ref=f61e7] [cursor=pointer]:
+        - /url: /admin
+      - link "Trở thành Người bán Shopee" [ref=f61e8] [cursor=pointer]:
+        - /url: /admin
+      - link "Tải ứng dụng" [ref=f61e9] [cursor=pointer]:
+        - /url: "#"
+      - generic [ref=f61e10]:
+        - text: Kết nối
+        - link "Facebook" [ref=f61e11] [cursor=pointer]:
+          - /url: "#"
+        - link "Instagram" [ref=f61e14] [cursor=pointer]:
+          - /url: "#"
+    - generic [ref=f61e17]:
+      - button "🔔 Thông Báo 5" [ref=f61e18] [cursor=pointer]:
+        - text: 🔔 Thông Báo
+        - generic [ref=f61e19]: "5"
+      - link "❓ Trợ Giúp" [ref=f61e20] [cursor=pointer]:
+        - /url: "#"
+      - link "🌐 Tiếng Việt ▾" [ref=f61e21] [cursor=pointer]:
+        - /url: "#"
+        - text: 🌐 Tiếng Việt
+        - generic [ref=f61e22]: ▾
+      - button "Đăng Nhập" [ref=f61e23] [cursor=pointer]
+      - link "Đăng Ký" [ref=f61e24] [cursor=pointer]:
+        - /url: "#"
+  - banner [ref=f61e25]:
+    - generic [ref=f61e26]:
+      - link "Shopee" [ref=f61e27] [cursor=pointer]:
+        - /url: /
+      - generic [ref=f61e35]:
+        - generic [ref=f61e36]:
+          - button "Tất cả ▾" [ref=f61e38] [cursor=pointer]:
+            - text: Tất cả
+            - generic [ref=f61e39]: ▾
+          - textbox "Tìm kiếm sản phẩm, thương hiệu và tên shop" [ref=f61e40]
+          - button [ref=f61e41] [cursor=pointer]
+        - generic [ref=f61e45]:
+          - link "Áo thun nam" [ref=f61e46] [cursor=pointer]:
+            - /url: "#"
+          - link "Tai nghe bluetooth" [ref=f61e47] [cursor=pointer]:
+            - /url: "#"
+          - link "Dép nữ" [ref=f61e48] [cursor=pointer]:
+            - /url: "#"
+          - link "Balo laptop" [ref=f61e49] [cursor=pointer]:
+            - /url: "#"
+          - link "Son môi" [ref=f61e50] [cursor=pointer]:
+            - /url: "#"
+          - link "Ốp lưng" [ref=f61e51] [cursor=pointer]:
+            - /url: "#"
+      - button "3" [ref=f61e53] [cursor=pointer]
+  - generic [ref=f61e59]:
+    - heading "Shopee Live" [level=1] [ref=f61e60]
+    - generic [ref=f61e61]:
+      - generic [ref=f61e62] [cursor=pointer]:
+        - img "Live Sale 12.12 - Giảm đến 70%" [ref=f61e63]
+        - generic [ref=f61e64]: LIVE
+        - generic [ref=f61e66]:
+          - generic [ref=f61e67]: Live Sale 12.12 - Giảm đến 70%
+          - generic [ref=f61e68]: 👁 12.3K đang xem
+      - generic [ref=f61e69] [cursor=pointer]:
+        - img "Review mỹ phẩm hot trend" [ref=f61e70]
+        - generic [ref=f61e71]: LIVE
+        - generic [ref=f61e73]:
+          - generic [ref=f61e74]: Review mỹ phẩm hot trend
+          - generic [ref=f61e75]: 👁 5.1K đang xem
+      - generic [ref=f61e76] [cursor=pointer]:
+        - img "Thời trang nữ deal sốc" [ref=f61e77]
+        - generic [ref=f61e78]: LIVE
+        - generic [ref=f61e80]:
+          - generic [ref=f61e81]: Thời trang nữ deal sốc
+          - generic [ref=f61e82]: 👁 8.7K đang xem
+      - generic [ref=f61e83] [cursor=pointer]:
+        - img "Đồ gia dụng thông minh" [ref=f61e84]
+        - generic [ref=f61e85]: LIVE
+        - generic [ref=f61e87]:
+          - generic [ref=f61e88]: Đồ gia dụng thông minh
+          - generic [ref=f61e89]: 👁 3.2K đang xem
+      - generic [ref=f61e90] [cursor=pointer]:
+        - img "Giày dép sale cuối mùa" [ref=f61e91]
+        - generic [ref=f61e92]: LIVE
+        - generic [ref=f61e94]:
+          - generic [ref=f61e95]: Giày dép sale cuối mùa
+          - generic [ref=f61e96]: 👁 6.9K đang xem
+      - generic [ref=f61e97] [cursor=pointer]:
+        - img "Live công nghệ - Giảm 50%" [ref=f61e98]
+        - generic [ref=f61e99]: LIVE
+        - generic [ref=f61e101]:
+          - generic [ref=f61e102]: Live công nghệ - Giảm 50%
+          - generic [ref=f61e103]: 👁 9.4K đang xem
+      - generic [ref=f61e104] [cursor=pointer]:
+        - img "Thời trang nam hot" [ref=f61e105]
+        - generic [ref=f61e106]: LIVE
+        - generic [ref=f61e108]:
+          - generic [ref=f61e109]: Thời trang nam hot
+          - generic [ref=f61e110]: 👁 4.2K đang xem
+      - generic [ref=f61e111] [cursor=pointer]:
+        - img "Mỹ phẩm Hàn Quốc" [ref=f61e112]
+        - generic [ref=f61e113]: LIVE
+        - generic [ref=f61e115]:
+          - generic [ref=f61e116]: Mỹ phẩm Hàn Quốc
+          - generic [ref=f61e117]: 👁 7.8K đang xem
+  - contentinfo [ref=f61e118]:
+    - generic [ref=f61e119]:
+      - generic [ref=f61e120]:
+        - generic [ref=f61e121]:
+          - heading "Chăm sóc khách hàng" [level=4] [ref=f61e122]
+          - link "Trung tâm trợ giúp" [ref=f61e123] [cursor=pointer]:
+            - /url: /
+          - link "Shopee Blog" [ref=f61e124] [cursor=pointer]:
+            - /url: /
+          - link "Shopee Mall" [ref=f61e125] [cursor=pointer]:
+            - /url: /mall
+          - link "Hướng dẫn mua hàng" [ref=f61e126] [cursor=pointer]:
+            - /url: /
+          - link "Hướng dẫn bán hàng" [ref=f61e127] [cursor=pointer]:
+            - /url: /
+          - link "Ví ShopeePay" [ref=f61e128] [cursor=pointer]:
+            - /url: /
+          - link "Shopee Xu" [ref=f61e129] [cursor=pointer]:
+            - /url: /
+          - link "Trả hàng & Hoàn tiền" [ref=f61e130] [cursor=pointer]:
+            - /url: /
+        - generic [ref=f61e131]:
+          - heading "Về Shopee" [level=4] [ref=f61e132]
+          - link "Giới thiệu về Shopee" [ref=f61e133] [cursor=pointer]:
+            - /url: /
+          - link "Tuyển dụng" [ref=f61e134] [cursor=pointer]:
+            - /url: /
+          - link "Điều khoản Shopee" [ref=f61e135] [cursor=pointer]:
+            - /url: /
+          - link "Chính sách bảo mật" [ref=f61e136] [cursor=pointer]:
+            - /url: /
+          - link "Shopee Mall" [ref=f61e137] [cursor=pointer]:
+            - /url: /mall
+          - link "Kênh Người Bán" [ref=f61e138] [cursor=pointer]:
+            - /url: /
+          - link "Flash Sale" [ref=f61e139] [cursor=pointer]:
+            - /url: /flash-sale
+          - link "Liên hệ với chúng tôi" [ref=f61e140] [cursor=pointer]:
+            - /url: /
+        - generic [ref=f61e141]:
+          - heading "Thanh toán" [level=4] [ref=f61e142]
+          - generic [ref=f61e143]:
+            - generic [ref=f61e144]: Visa
+            - generic [ref=f61e145]: Mastercard
+            - generic [ref=f61e146]: JCB
+            - generic [ref=f61e147]: COD
+            - generic [ref=f61e148]: ShopeePay
+        - generic [ref=f61e149]:
+          - heading "Đơn vị vận chuyển" [level=4] [ref=f61e150]
+          - generic [ref=f61e151]:
+            - generic [ref=f61e152]: GHN
+            - generic [ref=f61e153]: GHTK
+            - generic [ref=f61e154]: Viettel Post
+            - generic [ref=f61e155]: J&T
+            - generic [ref=f61e156]: VNPost
+        - generic [ref=f61e157]:
+          - heading "Theo dõi chúng tôi" [level=4] [ref=f61e158]
+          - link "Facebook" [ref=f61e159] [cursor=pointer]:
+            - /url: /
+          - link "Instagram" [ref=f61e160] [cursor=pointer]:
+            - /url: /
+          - link "LinkedIn" [ref=f61e161] [cursor=pointer]:
+            - /url: /
+          - link "YouTube" [ref=f61e162] [cursor=pointer]:
+            - /url: /
+          - heading "Tải ứng dụng Shopee" [level=4] [ref=f61e163]
+          - generic [ref=f61e164]:
+            - img "qr" [ref=f61e165]
+            - generic [ref=f61e166]:
+              - img "appstore" [ref=f61e167]
+              - img "googleplay" [ref=f61e168]
+      - generic [ref=f61e169]:
+        - generic [ref=f61e170]: © 2025 Shopee. Tất cả các quyền được bảo lưu.
+        - generic [ref=f61e171]:
+          - generic [ref=f61e172]: "Quốc gia & Khu vực:"
+          - link "Singapore" [ref=f61e173] [cursor=pointer]:
+            - /url: /
+          - link "Indonesia" [ref=f61e174] [cursor=pointer]:
+            - /url: /
+          - link "Thái Lan" [ref=f61e175] [cursor=pointer]:
+            - /url: /
+          - link "Malaysia" [ref=f61e176] [cursor=pointer]:
+            - /url: /
+          - link "Việt Nam" [ref=f61e177] [cursor=pointer]:
+            - /url: /
+          - link "Philippines" [ref=f61e178] [cursor=pointer]:
+            - /url: /
