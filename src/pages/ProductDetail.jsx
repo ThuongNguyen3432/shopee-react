@@ -5,6 +5,7 @@ import { useCart } from '../context/CartContext.jsx';
 import { supabase, isSupabaseConfigured } from '../lib/supabase.js';
 import { store } from '../admin/store.js';
 import { PRODUCTS } from '../data/products.js';
+import ProductCard from '../components/ProductCard.jsx';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
@@ -180,17 +181,8 @@ export default function ProductDetail() {
           <div className="bg-white rounded-sm shadow-sm p-4 mt-4">
             <h2 className="font-medium text-gray-700 mb-3 border-b pb-2">Sản phẩm tương tự</h2>
             <div className="grid grid-cols-6 gap-2 max-[900px]:grid-cols-3 max-[600px]:grid-cols-2">
-              {related.map((p) => (
-                <Link key={p.id} to={`/product/${p.id}`} className="group bg-white rounded-sm overflow-hidden cursor-pointer hover:shadow-md transition border border-transparent hover:border-gray-200">
-                  <div className="relative">
-                    <LazyImage src={p.img || p.image} alt={p.name} className="w-full aspect-square" />
-                    <div className="absolute top-0 right-0 bg-shopee-orange text-white text-[10px] font-bold px-1.5 py-0.5 rounded-bl-sm">-{20 + (p.id * 7) % 50}%</div>
-                  </div>
-                  <div className="px-2 pt-1.5 pb-2">
-                    <div className="product-name text-xs text-gray-800 leading-snug h-[32px] overflow-hidden">{p.name}</div>
-                    <div className="text-shopee-orange text-base font-medium mt-1">₫{Number(p.price).toLocaleString('vi-VN')}</div>
-                  </div>
-                </Link>
+              {related.map((p, i) => (
+                <ProductCard key={p.id} product={p} index={i} />
               ))}
             </div>
           </div>

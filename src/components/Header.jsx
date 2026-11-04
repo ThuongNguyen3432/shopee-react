@@ -50,8 +50,8 @@ export default function Header() {
 
   return (
     <>
-      {/* Top bar */}
-      <div className="bg-white text-xs text-gray-600">
+      {/* Top bar - hidden on mobile */}
+      <div className="bg-white text-xs text-gray-600 hidden md:block">
         <div className="container flex justify-between items-center h-8 px-2">
           <div className="flex items-center gap-4">
             <a href="/admin" className="hover:text-shopee-orange transition">Kênh Người Bán</a>
@@ -112,10 +112,10 @@ export default function Header() {
 
       {/* Main header */}
       <header className="bg-gradient-to-r from-[#f53d2d] to-[#f63]">
-        <div className="container flex items-center gap-4 h-[80px] px-2">
+        <div className="container flex items-center gap-2 md:gap-4 h-[60px] md:h-[80px] px-2">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 text-white font-bold text-[26px] tracking-tight shrink-0 leading-none">
-            <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a href="/" className="flex items-center gap-2 text-white font-bold text-[22px] md:text-[26px] tracking-tight shrink-0 leading-none">
+            <svg width="28" height="28" className="md:w-[34px] md:h-[34px]" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect x="2" y="12" width="36" height="24" rx="3" fill="#fff" opacity="0.18" />
               <path d="M6 12h28l-2.5 17H8.5L6 12z" fill="#fff" />
               <circle cx="14" cy="32" r="2" fill="#ee4d2d" />
@@ -126,9 +126,9 @@ export default function Header() {
           </a>
 
           {/* Search */}
-          <div className="flex-1 relative h-10 flex items-center" ref={searchRef}>
-            <form onSubmit={handleSearch} className="bg-white rounded flex items-stretch h-10 overflow-hidden w-full">
-              <div className="relative">
+          <div className="flex-1 relative h-9 md:h-10 flex items-center" ref={searchRef}>
+            <form onSubmit={handleSearch} className="bg-white rounded flex items-stretch h-9 md:h-10 overflow-hidden w-full">
+              <div className="relative hidden md:block">
                 <button
                   type="button"
                   onClick={() => setShowCat((v) => !v)}
@@ -175,7 +175,7 @@ export default function Header() {
                 ))}
               </div>
             )}
-            <div className="absolute top-full left-0 mt-1.5 flex gap-3 text-white text-xs opacity-90 flex-wrap">
+            <div className="absolute top-full left-0 mt-1.5 hidden md:flex gap-3 text-white text-xs opacity-90 flex-wrap">
               {TRENDING.map((t) => (
                 <a key={t} href="#" className="hover:underline" onClick={(e) => { e.preventDefault(); navigate(`/search?q=${encodeURIComponent(t)}`); }}>{t}</a>
               ))}

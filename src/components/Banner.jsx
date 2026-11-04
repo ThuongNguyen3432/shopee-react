@@ -12,7 +12,7 @@ export default function Banner() {
     return () => clearInterval(t);
   }, []);
   return (
-    <div className="flex gap-2 mt-2">
+    <div className="flex flex-col md:flex-row gap-2 mt-2">
       <div className="relative flex-1 rounded-sm overflow-hidden" style={{ aspectRatio: '2.4/1' }}>
         <div className="flex transition-transform duration-500 h-full" style={{ transform: `translateX(-${idx * 100}%)` }}>
           {slides.map((s, i) => (
@@ -31,7 +31,7 @@ export default function Banner() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-2" style={{ width: 280 }}>
+      <div className="hidden md:flex md:flex-col gap-2 md:w-[280px]">
         <div className="rounded-sm overflow-hidden" style={{ aspectRatio: '2/1' }}>
           <img src="https://picsum.photos/seed/shopee-side1/560/280" alt="side1" className="w-full h-full object-cover" />
         </div>
