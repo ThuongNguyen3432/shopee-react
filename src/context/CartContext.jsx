@@ -10,10 +10,11 @@ export function CartProvider({ children }) {
   const [toast, setToast] = useState(null);
 
   const add = (product) => {
+    const price = typeof product.price === 'number' ? product.price : parseInt(product.price.replace(/\D/g, ''));
     setItems((prev) => {
       const ex = prev.find((i) => i.id === product.id);
       if (ex) return prev.map((i) => (i.id === product.id ? { ...i, qty: i.qty + 1 } : i));
-      return [...prev, { id: product.id, name: product.name, price: parseInt(product.price.replace(/\D/g, '')), qty: 1, img: product.img }];
+      return [...prev, { id: product.id, name: product.name, price, qty: 1, img: product.img }];
     });
     showToast('Đã thêm vào giỏ hàng');
   };
