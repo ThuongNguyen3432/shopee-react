@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCart, Notification, SearchNormal1, Global, MessageQuestion, ShoppingBag, CloseCircle, ArrowDown2 } from 'iconsax-react';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
@@ -20,6 +20,7 @@ const NOTIFICATIONS = [
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { items, count, total, remove } = useCart();
   const { user, signInWithGoogle, signInWithFacebook, signInWithEmail, signUpWithEmail, signInWithPhone, signUpWithPhone, signOut } = useAuth();
   const [q, setQ] = useState('');
@@ -60,8 +61,29 @@ export default function Header() {
 
   const handleSearch = (e) => {
     e?.preventDefault();
-    if (q.trim()) navigate(`/search?q=${encodeURIComponent(q.trim())}`);
+    const params = new URLSearchParams();
+    if (q.trim()) params.set('q', q.trim());
+    if (cat !== 'Tất cả') params.set('cat', cat);
+    const qs = params.toString();
+    navigate(`/search${qs ? `?${qs}` : ''}`);
   };
+
+  const chooseCat = (c) => {
+    setCat(c);
+    setShowCat(false);
+    const params = new URLSearchParams();
+    if (q.trim()) params.set('q', q.trim());
+    if (c !== 'Tất cả') params.set('cat', c);
+    const qs = params.toString();
+    navigate(`/search${qs ? `?${qs}` : ''}`);
+  };
+
+  useEffect(() => {
+    if (location.pathname === '/search') {
+      const fromUrl = new URLSearchParams(location.search).get('cat') || 'Tất cả';
+      setCat(fromUrl);
+    }
+  }, [location.pathname, location.search]);
 
   const filtered = SUGGESTIONS.filter((s) => s.toLowerCase().includes(q.toLowerCase())).slice(0, 6);
 
@@ -132,8 +154,13 @@ export default function Header() {
 
                 {showUser && (
                   <div className="absolute right-0 top-full mt-2 w-48 bg-white shadow-lg rounded z-50 text-sm overflow-hidden">
-                    {['Tài khoản của tôi', 'Đơn mua', 'Kho voucher', 'Shopee Xu'].map((t) => (
-                      <div key={t} className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-gray-700">{t}</div>
+                    {[
+                      { label: 'Tài khoản của tôi', to: '/account?tab=profile' },
+                      { label: 'Đơn mua', to: '/account?tab=orders' },
+                      { label: 'Kho voucher', to: '/vouchers' },
+                      { label: 'Shopee Xu', to: '/account?tab=coins' },
+                    ].map((it) => (
+                      <div key={it.label} onClick={() => { navigate(it.to); setShowUser(false); }} className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-gray-700">{it.label}</div>
                     ))}
                     <div onClick={() => { signOut(); setShowUser(false); }} className="px-3 py-2 hover:bg-gray-50 cursor-pointer text-red-500 border-t">Đăng xuất</div>
                   </div>
@@ -175,7 +202,7 @@ export default function Header() {
                     {CATS.map((c) => (
                       <div
                         key={c}
-                        onClick={() => { setCat(c); setShowCat(false); }}
+                        onClick={() => chooseCat(c)}
                         className={`px-3 py-2 hover:bg-gray-50 cursor-pointer ${cat === c ? 'text-shopee-orange font-medium bg-shopee-orange-light' : 'text-gray-700'}`}
                       >
                         {c}
@@ -184,7 +211,11 @@ export default function Header() {
                   </div>
                 )}
               </div>
-              <input
+              <label htmlFor="header-search" className="sr-only">Tìm kiếm</label>
+     <input
+                id="header-search"
+                name="q"
+                aria-label="Tìm kiếm"
                 className="flex-1 border-none outline-none px-3 text-sm h-full"
                 type="text"
                 placeholder="Tìm kiếm sản phẩm, thương hiệu và tên shop"
@@ -257,7 +288,7 @@ export default function Header() {
                   <div className="text-xs text-gray-500">{count} sản phẩm</div>
                   <div className="flex items-center gap-3">
                     <div className="text-shopee-orange font-bold">₫{total.toLocaleString('vi-VN')}</div>
-                    <a href="/checkout" className="bg-shopee-orange text-white px-4 py-1.5 rounded text-xs hover:bg-shopee-red">Xem giỏ hàng</a>
+                    <a href="/cart" className="bg-shopee-orange text-white px-4 py-1.5 rounded text-xs hover:bg-shopee-red">Xem giỏ hàng</a>
                   </div>
                 </div>
               </div>

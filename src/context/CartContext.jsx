@@ -19,6 +19,10 @@ export function CartProvider({ children }) {
     showToast('Đã thêm vào giỏ hàng');
   };
   const remove = (id) => setItems((prev) => prev.filter((i) => i.id !== id));
+  const removeMany = (ids) => setItems((prev) => prev.filter((i) => !ids.includes(i.id)));
+  const updateQty = (id, qty) => setItems((prev) => prev.map((i) => (
+    i.id === id ? { ...i, qty: Math.min(99, Math.max(1, Number(qty) || 1)) } : i
+  )));
   const clear = () => setItems([]);
   const total = items.reduce((s, i) => s + i.price * i.qty, 0);
   const count = items.reduce((s, i) => s + i.qty, 0);
@@ -29,7 +33,7 @@ export function CartProvider({ children }) {
   }
 
   return (
-    <CartContext.Provider value={{ items, add, remove, clear, total, count, toast }}>
+    <CartContext.Provider value={{ items, add, remove, removeMany, updateQty, clear, total, count, toast }}>
       {children}
       {toast && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-5 py-3 rounded-sm shadow-lg z-50 text-sm animate-bounce">

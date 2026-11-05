@@ -15,6 +15,9 @@ import Checkout from './pages/Checkout.jsx';
 import ProductDetail from './pages/ProductDetail.jsx';
 import CategoryPage from './pages/CategoryPage.jsx';
 import SearchPage from './pages/SearchPage.jsx';
+import ShopPage from './pages/ShopPage.jsx';
+import CartPage from './pages/CartPage.jsx';
+import AccountPage from './pages/AccountPage.jsx';
 import VouchersPage from './pages/VouchersPage.jsx';
 import FlashSalePage from './pages/FlashSalePage.jsx';
 import LivePage from './pages/LivePage.jsx';
@@ -57,9 +60,13 @@ export default function App() {
         <Route path="/" element={<Storefront />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/orders" element={<AccountPage />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/category/:slug" element={<CategoryPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/shop/:shopId" element={<ShopPage />} />
         <Route path="/vouchers" element={<VouchersPage />} />
         <Route path="/flash-sale" element={<FlashSalePage />} />
         <Route path="/live" element={<LivePage />} />

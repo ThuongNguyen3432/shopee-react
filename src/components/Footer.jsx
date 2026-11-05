@@ -46,9 +46,9 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="border-t border-gray-200 pt-4 flex justify-between items-center text-gray-400">
+        <div className="border-t border-gray-200 pt-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 text-gray-400">
           <div>© 2025 Shopee. Tất cả các quyền được bảo lưu.</div>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span>Quốc gia & Khu vực:</span>
             {countries.map((c) => <Link key={c} to="/" className="text-gray-400 hover:text-shopee-orange">{c}</Link>)}
           </div>
