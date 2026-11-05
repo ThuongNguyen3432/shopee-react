@@ -31,9 +31,55 @@ const seed = {
     { id: 2, code: 'FREESHIP', label: 'Freeship Xtra', sub: 'Toàn quốc', value: 30000, min_order: 0, active: true },
   ],
   banners: [
-    { id: 1, title: 'Banner chính 1', image: 'https://picsum.photos/seed/shopee-banner1/960/400', link: '#', position: 'main', active: true },
-    { id: 2, title: 'Side 1', image: 'https://picsum.photos/seed/shopee-side1/560/280', link: '#', position: 'side', active: true },
+    { id: 1, title: 'Banner chính 1', image: 'https://picsum.photos/seed/shopee-banner1/960/400', link: '#', position: 'main', active: true, sort_order: 1 },
+    { id: 2, title: 'Banner chính 2', image: 'https://picsum.photos/seed/shopee-banner2/960/400', link: '#', position: 'main', active: true, sort_order: 2 },
+    { id: 3, title: 'Banner chính 3', image: 'https://picsum.photos/seed/shopee-banner3/960/400', link: '#', position: 'main', active: true, sort_order: 3 },
+    { id: 4, title: 'Side 1', image: 'https://picsum.photos/seed/shopee-side1/560/280', link: '#', position: 'side', active: true, sort_order: 1 },
+    { id: 5, title: 'Side 2', image: 'https://picsum.photos/seed/shopee-side2/560/280', link: '#', position: 'side', active: true, sort_order: 2 },
   ],
+  popup: {
+    enabled: true,
+    title: 'Ưu đãi chào mừng!',
+    desc: 'Nhận voucher 50K cho đơn đầu tiên. Nhập mã SHOPEE50 khi thanh toán.',
+    image: 'https://picsum.photos/seed/popupwelcome/400/300',
+    button_text: 'Nhận ngay',
+    button_link: '/vouchers',
+    frequency: 'once',
+  },
+  top_searches: [
+    { id: 1, keyword: 'Áo thun nam', count: 12500, active: true },
+    { id: 2, keyword: 'Tai nghe bluetooth', count: 9800, active: true },
+    { id: 3, keyword: 'Dép nữ', count: 8700, active: true },
+    { id: 4, keyword: 'Balo laptop', count: 7600, active: true },
+    { id: 5, keyword: 'Son môi', count: 6500, active: true },
+    { id: 6, keyword: 'Ốp lưng', count: 5400, active: true },
+    { id: 7, keyword: 'Quần jean nam', count: 4300, active: true },
+    { id: 8, keyword: 'Giày sneaker', count: 3200, active: true },
+  ],
+  site_settings: {
+    site_name: 'Shopee',
+    logo_text: 'Shopee',
+    tagline: 'Mua sắm online',
+    header_trending: ['Áo thun nam', 'Tai nghe bluetooth', 'Dép nữ', 'Balo laptop', 'Son môi', 'Ốp lưng'],
+    footer_copyright: '© 2025 Shopee. Tất cả các quyền được bảo lưu.',
+    footer_countries: ['Singapore', 'Indonesia', 'Thái Lan', 'Malaysia', 'Việt Nam', 'Philippines', 'Brazil', 'México', 'Colombia', 'Chile'],
+    home_sections: { banner: true, voucher_bar: true, category_icons: true, flash_sale: true, live: true, mall: true, product_grid: true, top_searches: true },
+    preferred_badge: { enabled: true, min_rating: 4.8, min_sold: 500, show_mall: true },
+    payment_methods: ['COD', 'ShopeePay', 'Thẻ tín dụng/ghi nợ', 'Chuyển khoản ngân hàng'],
+    shipping_options: [
+      { value: 'standard', label: 'Vận chuyển tiêu chuẩn', fee: 0, eta: '3-5 ngày' },
+      { value: 'express', label: 'Vận chuyển nhanh', fee: 15000, eta: '1-2 ngày' },
+    ],
+    chat_quick_replies: ['Sản phẩm này còn hàng không?', 'Phí vận chuyển bao nhiêu?', 'Có mã giảm giá không shop?', 'Bao lâu thì giao hàng?', 'Có được đổi trả không?'],
+    live_streams: [
+      { title: 'Live Sale 12.12 - Giảm đến 70%', viewers: '12.3K', img: 'https://picsum.photos/seed/live1/240/320' },
+      { title: 'Review mỹ phẩm hot trend', viewers: '5.1K', img: 'https://picsum.photos/seed/live2/240/320' },
+    ],
+    mall_brands: [
+      { name: 'Samsung', img: 'https://picsum.photos/seed/brand1/120/60', tag: 'Chính hãng' },
+      { name: 'Apple', img: 'https://picsum.photos/seed/brand2/120/60', tag: 'Mall' },
+    ],
+  },
   flash_sales: [
     { id: 1, product_id: 101, discount: 75, stock: 100, sold: 82, start_at: '2025-11-04 12:00', end_at: '2025-11-04 14:00', active: true },
     { id: 2, product_id: 102, discount: 50, stock: 50, sold: 33, start_at: '2025-11-04 12:00', end_at: '2025-11-04 14:00', active: true },
@@ -43,7 +89,21 @@ const seed = {
 function load() {
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const data = JSON.parse(raw);
+      // merge any new seed keys (e.g. popup, top_searches) into existing data
+      let changed = false;
+      Object.keys(seed).forEach((k) => {
+        if (data[k] === undefined) { data[k] = JSON.parse(JSON.stringify(seed[k])); changed = true; }
+      });
+      // refresh banners if fewer than seed (so new default banners appear)
+      if (!Array.isArray(data.banners) || data.banners.length < seed.banners.length) {
+        data.banners = JSON.parse(JSON.stringify(seed.banners));
+        changed = true;
+      }
+      if (changed) localStorage.setItem(KEY, JSON.stringify(data));
+      return data;
+    }
   } catch {}
   localStorage.setItem(KEY, JSON.stringify(seed));
   return JSON.parse(JSON.stringify(seed));

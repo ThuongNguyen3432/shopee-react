@@ -8,6 +8,7 @@ import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { getShopInfo, shopPath } from '../lib/shop.js';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 import { supabase, isSupabaseConfigured } from '../lib/supabase.js';
@@ -74,6 +75,7 @@ function Radio({ checked, onChange, label }) {
 export default function Checkout() {
   const navigate = useNavigate();
   const { items, total: cartTotal, clear } = useCart();
+  useSEO({ title: 'Thanh toán', description: 'Thanh toán đơn hàng tại Shopee.', url: '/checkout', noindex: true });
   const { user } = useAuth();
 
   const [addresses] = useState(DEFAULT_ADDRESSES);

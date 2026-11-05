@@ -5,6 +5,7 @@ import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '@/comp
 import { Button } from '@/components/ui/button';
 import { useCart } from '../context/CartContext.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
+import { useLogin } from '../context/LoginContext.jsx';
 import SeeAll from './SeeAll.jsx';
 
 const SUGGESTIONS = ['Áo thun nam', 'Tai nghe bluetooth', 'Dép nữ', 'Balo laptop', 'Son môi', 'Ốp lưng iPhone', 'Quần jean nam', 'Kem chống nắng', 'Giày sneaker', 'Bình giữ nhiệt'];
@@ -30,8 +31,15 @@ export default function Header() {
   const [showNotif, setShowNotif] = useState(false);
   const [cat, setCat] = useState('Tất cả');
   const [showCat, setShowCat] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
+  const { showLogin, setShowLogin } = useLogin();
   const [loginTab, setLoginTab] = useState('email');
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('login') === '1') {
+      setShowLogin(true);
+    }
+  }, [location.search]);
   const [mode, setMode] = useState('signin');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -90,30 +98,31 @@ export default function Header() {
   return (
     <>
       {/* Top bar - hidden on mobile */}
-      <div className="bg-white text-xs text-gray-600 hidden md:block">
+      <div className="bg-gradient-to-b from-[#f53d2d] to-[#f63] text-xs text-white hidden md:block">
         <div className="container flex justify-between items-center h-8 px-2">
           <div className="flex items-center gap-4">
-            <a href="/admin" className="hover:text-shopee-orange transition">Kênh Người Bán</a>
-            <a href="/admin" className="hover:text-shopee-orange transition">Trở thành Người bán Shopee</a>
-            <a href="#" className="hover:text-shopee-orange transition">Tải ứng dụng</a>
+            <a href="/admin" className="hover:underline transition text-white/90">Kênh Người Bán</a>
+            <a href="/admin" className="hover:underline transition text-white/90">Trở thành Người bán Shopee</a>
+            <a href="#" className="hover:underline transition text-white/90">Tải ứng dụng</a>
             <span className="flex items-center gap-2">
               Kết nối
-              <a href="#" className="hover:text-shopee-orange transition" aria-label="Facebook">
+              <a href="#" className="hover:underline transition text-white/90" aria-label="Facebook">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </a>
-              <a href="#" className="hover:text-shopee-orange transition" aria-label="Instagram">
+              <a href="#" className="hover:underline transition text-white/90" aria-label="Instagram">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </a>
             </span>
           </div>
           <div className="flex items-center gap-4">
+{user && (
             <div className="relative" ref={notifRef}>
               <TooltipProvider delayDuration={150}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button
                       onClick={() => setShowNotif((v) => !v)}
-                      className="hover:text-shopee-orange transition relative flex items-center gap-1"
+                      className="hover:underline transition text-white/90 relative flex items-center gap-1"
                       aria-label="Thông báo"
                     >
                       <Notification size={16} variant="Outline" color="currentColor" /> Thông Báo
@@ -132,18 +141,19 @@ export default function Header() {
                       <div key={i} className="px-3 py-2.5 hover:bg-gray-50 border-b last:border-0 cursor-pointer text-gray-700">{n}</div>
                     ))}
                   </div>
-                  <SeeAll to="/vouchers" className="ml-0 w-full justify-center p-2.5 border-t" />
+                  <SeeAll to="/notifications" className="ml-0 w-full justify-center p-2.5 border-t" />
                 </div>
               )}
             </div>
-            <a href="#" className="hover:text-shopee-orange transition flex items-center gap-1"><MessageQuestion size={14} variant="Outline" color="currentColor" /> Trợ Giúp</a>
-            <a href="#" className="hover:text-shopee-orange transition flex items-center gap-0.5"><Global size={14} variant="Outline" color="currentColor" /> Tiếng Việt <ArrowDown2 size={10} variant="Linear" color="currentColor" className="opacity-70" /></a>
+            )}
+            <a href="#" className="hover:underline transition text-white/90 flex items-center gap-1"><MessageQuestion size={14} variant="Outline" color="currentColor" /> Trợ Giúp</a>
+            <a href="#" className="hover:underline transition text-white/90 flex items-center gap-0.5"><Global size={14} variant="Outline" color="currentColor" /> Tiếng Việt <ArrowDown2 size={10} variant="Linear" color="currentColor" className="opacity-70" /></a>
             {user ? (
               <div className="relative" ref={userRef}>
                 <TooltipProvider delayDuration={150}>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <button onClick={() => setShowUser((v) => !v)} className="hover:text-shopee-orange transition flex items-center gap-1.5" aria-label="Tài khoản">
+                      <button onClick={() => setShowUser((v) => !v)} className="hover:underline transition text-white/90 flex items-center gap-1.5" aria-label="Tài khoản">
                         <img src={user.user_metadata?.avatar_url || user.user_metadata?.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.email || 'U')}&background=ee4d2d&color=fff`} alt="avatar" className="w-5 h-5 rounded-full" />
                         <span className="max-w-[120px] truncate">{user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0]}</span>
                       </button>
@@ -156,7 +166,11 @@ export default function Header() {
                   <div className="absolute right-0 top-full mt-2 w-48 bg-white shadow-lg rounded z-50 text-sm overflow-hidden">
                     {[
                       { label: 'Tài khoản của tôi', to: '/account?tab=profile' },
+                      { label: 'Yêu thích', to: '/wishlist' },
+                      { label: 'Đã xem', to: '/recently-viewed' },
+                      { label: 'Tin nhắn', to: '/messages' },
                       { label: 'Đơn mua', to: '/account?tab=orders' },
+                      { label: 'Trả hàng/Hoàn tiền', to: '/returns' },
                       { label: 'Kho voucher', to: '/vouchers' },
                       { label: 'Shopee Xu', to: '/account?tab=coins' },
                     ].map((it) => (
@@ -168,8 +182,8 @@ export default function Header() {
               </div>
             ) : (
               <>
-                <button onClick={() => setShowLogin(true)} className="hover:text-shopee-orange transition">Đăng Nhập</button>
-                <a href="#" onClick={(e) => { e.preventDefault(); setShowLogin(true); }} className="hover:text-shopee-orange transition">Đăng Ký</a>
+                <button onClick={() => setShowLogin(true)} className="hover:underline transition text-white/90">Đăng Nhập</button>
+                <a href="#" onClick={(e) => { e.preventDefault(); setShowLogin(true); }} className="hover:underline transition text-white/90">Đăng Ký</a>
               </>
             )}
           </div>
@@ -177,23 +191,23 @@ export default function Header() {
       </div>
 
       {/* Main header */}
-      <header className="bg-gradient-to-r from-[#f53d2d] to-[#f63]">
-        <div className="container flex items-center gap-2 md:gap-4 h-[60px] md:h-[80px] px-2">
+      <header className="bg-gradient-to-b from-[#f53d2d] to-[#f63]">
+        <div className="container flex items-center gap-3 md:gap-6 h-[72px] md:h-[96px] px-2">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2 text-white font-bold text-[22px] md:text-[26px] tracking-tight shrink-0 leading-none">
-            <ShoppingBag size={30} variant="Bold" color="#fff" />
-            <span className="hidden sm:inline">Shopee</span>
+          <a href="/" className="flex items-center gap-2 text-white font-medium text-[20px] md:text-[24px] tracking-tight shrink-0 leading-none">
+            <ShoppingBag size={22} variant="Bold" color="#fff" className="md:w-[24px] md:h-[24px] shrink-0" />
+            <span>Shopee</span>
           </a>
 
           {/* Search */}
           <div className="flex-1 relative min-w-0" ref={searchRef}>
-            <div className="relative h-9 md:h-10 flex items-center">
-              <form onSubmit={handleSearch} className="bg-white rounded flex items-stretch h-9 md:h-10 overflow-hidden w-full">
+            <div className="relative h-10 md:h-12 flex items-center">
+              <form onSubmit={handleSearch} className="bg-white rounded flex items-stretch h-10 md:h-12 w-full shadow-sm">
               <div className="relative hidden md:block">
                 <button
                   type="button"
                   onClick={() => setShowCat((v) => !v)}
-                  className="h-full px-3 text-xs text-gray-600 border-r border-gray-200 flex items-center gap-1 hover:bg-gray-50 whitespace-nowrap"
+                  className="h-full px-4 text-sm text-gray-600 border-r border-gray-200 flex items-center gap-1 hover:bg-gray-50 whitespace-nowrap"
                 >
                   {cat} <ArrowDown2 size={10} variant="Linear" color="currentColor" className="opacity-70" />
                 </button>
@@ -364,6 +378,8 @@ export default function Header() {
                     setAuthSuccess('Đã gửi email xác thực. Vui lòng kiểm tra hộp thư (và spam) để kích hoạt tài khoản.');
                   } else {
                     setShowLogin(false); setEmail(''); setPhone(''); setPassword(''); setName('');
+                    const redirect = new URLSearchParams(location.search).get('redirect');
+                    if (redirect) navigate(redirect);
                   }
                 } catch (e) { setAuthError(e.message); }
                 finally { setAuthLoading(false); }

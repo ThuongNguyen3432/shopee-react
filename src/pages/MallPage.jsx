@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 
@@ -22,6 +23,7 @@ const BRANDS = [
 const CATEGORIES = ['Điện tử', 'Thời trang', 'Làm đẹp', 'Gia dụng', 'Thể thao', 'Mẹ & Bé', 'Sách', 'Bách hóa'];
 
 export default function MallPage() {
+  useSEO({ title: 'Shopee Mall - Chính hãng 100%', description: 'Shopee Mall, hàng chính hãng, hoàn tiền 200% nếu hàng giả.', url: '/mall' });
   const [cat, setCat] = useState('Tất cả');
   return (
     <div className="min-h-screen bg-[#f5f5f5]">

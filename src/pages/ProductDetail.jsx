@@ -7,6 +7,9 @@ import {
   Verify, Like, Link as LinkIcon, DiscountShape,
 } from 'iconsax-react';
 import { useCart } from '../context/CartContext.jsx';
+import { useRequireAuth } from '../hooks/useRequireAuth.js';
+import { useSEO, productJsonLd, breadcrumbJsonLd } from '../hooks/useSEO.js';
+import { trackView } from './RecentlyViewedPage.jsx';
 import { supabase, isSupabaseConfigured } from '../lib/supabase.js';
 import { store } from '../admin/store.js';
 import { PRODUCTS } from '../data/products.js';
@@ -35,16 +38,19 @@ const REVIEW_POOL = [
     name: 'ng*****3', rating: 5, date: '2025-10-28 14:32', variant: 'Màu sắc: Đen, Kích thước: M',
     likes: 24, avatar: 'https://i.pravatar.cc/64?img=12', verified: true,
     text: 'Giao hàng nhanh, đóng gói cẩn thận. Sản phẩm đúng mô tả, chất lượng tốt hơn mình mong đợi so với giá tiền. Sẽ ủng hộ shop tiếp.',
+    images: ['https://picsum.photos/seed/rv1/120/120', 'https://picsum.photos/seed/rv2/120/120'],
   },
   {
     name: 'tr*****8', rating: 5, date: '2025-10-21 09:05', variant: 'Màu sắc: Trắng, Kích thước: L',
     likes: 11, avatar: 'https://i.pravatar.cc/64?img=32', verified: true,
     text: 'Nhận hàng sau 3 ngày, hàng đẹp y hình, shop tư vấn nhiệt tình. Đóng gói kỹ, shipper thân thiện. 5 sao cho shop.',
+    images: ['https://picsum.photos/seed/rv3/120/120'],
   },
   {
     name: 'ha*****1', rating: 4, date: '2025-10-02 20:47', variant: 'Màu sắc: Be, Kích thước: S',
     likes: 3, avatar: 'https://i.pravatar.cc/64?img=45', verified: true,
     text: 'Chất lượng ổn trong tầm giá, mẫu mã xinh. Trừ 1 sao vì giao hàng hơi chậm so với dự kiến.',
+    images: [],
   },
 ];
 
@@ -96,6 +102,7 @@ export default function ProductDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { add } = useCart();
+  const requireAuth = useRequireAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [qty, setQty] = useState(1);
@@ -104,6 +111,17 @@ export default function ProductDetail() {
   const [liked, setLiked] = useState(false);
   const [selected, setSelected] = useState({});
   const [reviewFilter, setReviewFilter] = useState('all');
+  const [reviewLikes, setReviewLikes] = useState({});
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [reviewText, setReviewText] = useState('');
+  const [reviewImages, setReviewImages] = useState([]);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [qaText, setQaText] = useState('');
+  const [qaList, setQaList] = useState([
+    { q: 'Sản phẩm này có bảo hành không shop?', a: 'Dạ shop bảo hành 12 tháng ạ. Bạn yên tâm mua hàng nhé!', name: 'Minh Anh Shop', time: '2 ngày trước' },
+    { q: 'Có freeship không ạ?', a: 'Dạ shop freeship cho đơn từ 99k ạ.', name: 'Minh Anh Shop', time: '5 ngày trước' },
+  ]);
   const [shipTo, setShipTo] = useState('Hà Nội');
   const [showShip, setShowShip] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -150,6 +168,7 @@ export default function ProductDetail() {
     setLiked(false);
     setReviewFilter('all');
     setSelected(Object.fromEntries(getVariants(product.category).map((v) => [v.label, v.options[0]])));
+    if (product?.id) trackView(product.id);
   }, [product]);
 
   if (loading) {
@@ -194,6 +213,16 @@ export default function ProductDetail() {
   const reviewCount = 800 + ((seed * 37) % 4200);
   const soldText = typeof product.sold === 'string' ? product.sold : formatShort(product.sold || seed * 31);
   const variants = getVariants(product.category);
+
+  useSEO({
+    title: product.name,
+    description: (product.description || product.name) + ` - Giá ₫${Number(product.price).toLocaleString('vi-VN')}. Mua online tại Shopee.`,
+    keywords: `${product.name}, ${product.category}, mua online, shopee`,
+    image: imgSrc,
+    url: `/product/${product.id}`,
+    type: 'product',
+    jsonLd: productJsonLd({ ...product, img: imgSrc }),
+  });
   const shop = getShopInfo(product);
   const shopName = shop.name;
   const shopAvatar = shop.avatar;
@@ -211,15 +240,23 @@ export default function ProductDetail() {
         : star === 3 ? Math.round(reviewCount * 0.04)
           : star === 2 ? Math.round(reviewCount * 0.01) : 0,
   }));
-  const shownReviews = REVIEW_POOL.filter((r) => reviewFilter === 'all' || r.rating === Number(reviewFilter));
+  const toggleReviewLike = (i) => setReviewLikes((prev) => ({ ...prev, [i]: !prev[i] }));
+  const shownReviews = REVIEW_POOL.filter((r) => {
+    if (reviewFilter === 'all') return true;
+    if (reviewFilter === 'photo') return (r.images || []).length > 0;
+    if (reviewFilter === 'video') return false;
+    return r.rating === Number(reviewFilter);
+  });
   const reviewImgs = [1, 2, 3].map((i) => `https://picsum.photos/seed/r${seed}${i}/120/120`);
 
   const prevImg = () => setActiveImg((i) => (i - 1 + images.length) % images.length);
   const nextImg = () => setActiveImg((i) => (i + 1) % images.length);
   const addToCart = () => {
+    if (!requireAuth()) return;
     for (let i = 0; i < qty; i++) add({ ...product, img: imgSrc });
   };
   const buyNow = () => {
+    if (!requireAuth()) return;
     addToCart();
     navigate('/checkout');
   };
@@ -299,7 +336,7 @@ export default function ProductDetail() {
 
                   <div className="flex items-center justify-between gap-2 mt-4 text-xs text-gray-600">
                     <button
-                      onClick={() => setLiked((v) => !v)}
+                      onClick={() => { if (requireAuth()) setLiked((v) => !v); }}
                       className={`flex items-center gap-1.5 ${liked ? 'text-shopee-orange' : 'hover:text-shopee-orange'}`}
                     >
                       <Heart size={18} variant={liked ? 'Bold' : 'Linear'} color={liked ? '#ee4d2d' : 'currentColor'} />
@@ -452,6 +489,14 @@ export default function ProductDetail() {
                     </div>
                   ))}
 
+                  {/* Size guide link */}
+                  <div className="flex items-start gap-4 mt-2 text-sm">
+                    <span className="w-[104px] shrink-0" />
+                    <button onClick={() => setShowSizeGuide(true)} className="text-xs text-shopee-orange hover:underline">
+                      Hướng dẫn chọn size
+                    </button>
+                  </div>
+
                   {/* Quantity */}
                   <div className="flex items-center gap-4 mt-5 text-sm">
                     <span className="w-[104px] shrink-0 text-gray-500">Số lượng</span>
@@ -597,6 +642,12 @@ export default function ProductDetail() {
                         {star} Sao ({formatShort(count)})
                       </button>
                     ))}
+                    <button
+                      onClick={() => setReviewFilter('photo')}
+                      className={`border px-2 py-2 text-xs rounded-[2px] text-center ${reviewFilter === 'photo' ? 'border-shopee-orange text-shopee-orange' : 'border-gray-200 text-gray-600 hover:border-shopee-orange'}`}
+                    >
+                      Có hình ảnh
+                    </button>
                   </div>
                 </div>
 
@@ -620,20 +671,119 @@ export default function ProductDetail() {
                         {r.date} | Phân loại hàng: {r.variant}
                       </div>
                       <p className="text-sm text-gray-700 leading-6 mt-2">{r.text}</p>
-                      {i === 0 && (
+                      {(r.images || []).length > 0 && (
                         <div className="flex gap-2 mt-2">
-                          {reviewImgs.map((img) => (
+                          {(r.images || []).map((img) => (
                             <img key={img} src={img} alt="" className="w-16 h-16 object-cover rounded-[2px] border border-gray-100" loading="lazy" />
                           ))}
                         </div>
                       )}
-                      <div className="flex items-center gap-1 text-xs text-gray-500 mt-2">
-                        <Like size={13} variant="Linear" color="currentColor" /> Hữu ích ({r.likes})
-                      </div>
+                      <button
+                        onClick={() => toggleReviewLike(i)}
+                        className={`flex items-center gap-1 text-xs mt-2 transition ${reviewLikes[i] ? 'text-shopee-orange' : 'text-gray-500 hover:text-shopee-orange'}`}
+                      >
+                        <Like size={13} variant={reviewLikes[i] ? 'Bold' : 'Linear'} color="currentColor" />
+                        Hữu ích ({r.likes + (reviewLikes[i] ? 1 : 0)})
+                      </button>
                     </div>
                   ))}
                 </div>
               </div>
+            </div>
+
+            {/* Write review + Q&A */}
+            <div className="bg-white rounded-sm">
+              <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+                <h2 className="text-base md:text-lg font-medium text-gray-800">Hỏi đáp về sản phẩm</h2>
+                <span className="text-xs text-gray-500">{qaList.length} câu hỏi</span>
+              </div>
+              <div className="p-4">
+                <form
+                  onSubmit={(e) => { e.preventDefault(); if (!qaText.trim()) return; setQaList((l) => [{ q: qaText.trim(), a: '', name: 'Bạn', time: 'Vừa xong' }, ...l]); setQaText(''); }}
+                  className="flex gap-2 mb-4"
+                >
+                  <input
+                    id="qa-input"
+                    name="qa"
+                    value={qaText}
+                    onChange={(e) => setQaText(e.target.value)}
+                    placeholder="Đặt câu hỏi cho shop..."
+                    aria-label="Đặt câu hỏi"
+                    className="flex-1 h-9 border border-gray-200 rounded-[2px] px-3 text-sm outline-none focus:border-shopee-orange"
+                  />
+                  <button type="submit" className="h-9 px-4 bg-shopee-orange text-white text-sm rounded-[2px] hover:bg-shopee-red">Gửi</button>
+                </form>
+                <div className="space-y-4">
+                  {qaList.map((qa, i) => (
+                    <div key={i} className="border-b border-gray-100 pb-3 last:border-0 last:pb-0">
+                      <div className="flex items-start gap-2">
+                        <span className="text-xs font-medium text-blue-600 shrink-0">Hỏi:</span>
+                        <div className="text-sm text-gray-800">{qa.q}</div>
+                      </div>
+                      {qa.a ? (
+                        <div className="flex items-start gap-2 mt-2 ml-4">
+                          <span className="text-xs font-medium text-shopee-orange shrink-0">Đáp:</span>
+                          <div className="text-sm text-gray-700">{qa.a}</div>
+                        </div>
+                      ) : (
+                        <div className="text-xs text-gray-400 mt-2 ml-4 italic">Chờ shop trả lời...</div>
+                      )}
+                      <div className="text-[10px] text-gray-400 mt-1 ml-4">{qa.name} · {qa.time}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Write review */}
+            <div className="bg-white rounded-sm">
+              <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+                <h2 className="text-base md:text-lg font-medium text-gray-800">Viết đánh giá</h2>
+                <button onClick={() => setShowReviewForm((v) => !v)} className="text-sm text-shopee-orange hover:underline">
+                  {showReviewForm ? 'Thu gọn' : 'Viết đánh giá'}
+                </button>
+              </div>
+              {showReviewForm && (
+                <form
+                  onSubmit={(e) => { e.preventDefault(); if (!reviewText.trim()) return; setShowReviewForm(false); setReviewText(''); setReviewImages([]); }}
+                  className="p-4 space-y-3"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-600">Chấm điểm:</span>
+                    <div className="flex gap-1">
+                      {[1,2,3,4,5].map((star) => (
+                        <button key={star} type="button" onClick={() => setReviewRating(star)} aria-label={`${star} sao`}>
+                          <Star1 size={22} variant={star <= reviewRating ? 'Bold' : 'Linear'} color={star <= reviewRating ? '#f5c518' : '#ccc'} />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <textarea
+                    value={reviewText}
+                    onChange={(e) => setReviewText(e.target.value)}
+                    rows={3}
+                    placeholder="Chia sẻ trải nghiệm của bạn về sản phẩm..."
+                    className="w-full border border-gray-200 rounded-[2px] px-3 py-2 text-sm outline-none focus:border-shopee-orange resize-none"
+                  />
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <label className="h-9 px-3 border border-gray-300 text-gray-600 text-sm rounded-[2px] hover:border-shopee-orange hover:text-shopee-orange cursor-pointer flex items-center gap-1">
+                      <input type="file" accept="image/*" multiple className="hidden" onChange={(e) => {
+                        const files = Array.from(e.target.files || []);
+                        const urls = files.map((f) => URL.createObjectURL(f));
+                        setReviewImages((prev) => [...prev, ...urls].slice(0, 5));
+                      }} />
+                      Thêm hình ảnh
+                    </label>
+                    {reviewImages.map((u, i) => (
+                      <div key={i} className="relative">
+                        <img src={u} alt="" className="w-12 h-12 object-cover rounded-[2px] border border-gray-200" />
+                        <button type="button" onClick={() => setReviewImages((prev) => prev.filter((_, j) => j !== i))} className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gray-700 text-white text-[10px] flex items-center justify-center">×</button>
+                      </div>
+                    ))}
+                  </div>
+                  <button type="submit" className="h-9 px-6 bg-shopee-orange text-white text-sm rounded-[2px] hover:bg-shopee-red">Gửi đánh giá</button>
+                </form>
+              )}
             </div>
 
             {/* Related products */}
@@ -686,7 +836,7 @@ export default function ProductDetail() {
 
               <div className="flex gap-2 mt-4">
                 <button
-                  onClick={() => setChatOpen(true)}
+                  onClick={() => { if (requireAuth()) setChatOpen(true); }}
                   className="flex-1 h-9 border border-shopee-orange text-shopee-orange text-sm flex items-center justify-center gap-1.5 rounded-[2px] hover:bg-shopee-orange-light transition"
                 >
                   <Message size={15} variant="Outline" color="currentColor" /> Chat
@@ -724,7 +874,7 @@ export default function ProductDetail() {
       {/* Mobile sticky action bar */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-white border-t border-gray-200 flex items-stretch h-14 shadow-[0_-2px_8px_rgba(0,0,0,0.06)]">
         <button
-          onClick={() => setChatOpen(true)}
+          onClick={() => { if (requireAuth()) setChatOpen(true); }}
           className="w-16 flex flex-col items-center justify-center gap-0.5 text-[10px] text-gray-600 border-r border-gray-100"
         >
           <Message size={19} variant="Outline" color="currentColor" /> Chat
@@ -750,6 +900,44 @@ export default function ProductDetail() {
         shop={shop}
         product={{ ...product, img: imgSrc }}
       />
+
+      {/* Size guide modal */}
+      {showSizeGuide && (
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4" onClick={() => setShowSizeGuide(false)}>
+          <div className="bg-white rounded-sm w-full max-w-md" onClick={(e) => e.stopPropagation()}>
+            <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
+              <span className="font-medium text-gray-800">Hướng dẫn chọn size</span>
+              <button onClick={() => setShowSizeGuide(false)} className="text-gray-400 hover:text-gray-700">✕</button>
+            </div>
+            <div className="p-4 overflow-x-auto">
+              <table className="w-full text-xs text-gray-700">
+                <thead>
+                  <tr className="bg-gray-50">
+                    <th className="px-2 py-2 text-left">Size</th>
+                    <th className="px-2 py-2 text-left">Chiều cao</th>
+                    <th className="px-2 py-2 text-left">Cân nặng</th>
+                    <th className="px-2 py-2 text-left">Vòng ngực</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['S', '150-160cm', '40-50kg', '80-84cm'],
+                    ['M', '160-170cm', '50-60kg', '84-88cm'],
+                    ['L', '170-175cm', '60-70kg', '88-92cm'],
+                    ['XL', '175-180cm', '70-80kg', '92-96cm'],
+                  ].map((row) => (
+                    <tr key={row[0]} className="border-t border-gray-100">
+                      {row.map((c, i) => <td key={i} className="px-2 py-2">{c}</td>)}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <p className="text-[11px] text-gray-400 mt-3">* Số đo mang tính tham khảo. Nếu bạn ở giữa 2 size, nên chọn size lớn hơn.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

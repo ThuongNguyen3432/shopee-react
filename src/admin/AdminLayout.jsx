@@ -10,6 +10,7 @@ import {
   Flash,
   Setting,
   ArrowLeft,
+  SearchNormal1,
 } from 'iconsax-react';
 
 const NAV = [
@@ -21,6 +22,9 @@ const NAV = [
   { to: '/admin/vouchers', label: 'Voucher', Icon: TicketDiscount },
   { to: '/admin/banners', label: 'Banner', Icon: Image },
   { to: '/admin/flash-sale', label: 'Flash Sale', Icon: Flash },
+  { to: '/admin/popup', label: 'Popup quảng cáo', Icon: Image },
+  { to: '/admin/top-searches', label: 'Tìm kiếm hàng đầu', Icon: SearchNormal1 },
+  { to: '/admin/site-settings', label: 'Cấu hình site', Icon: Setting },
   { to: '/admin/settings', label: 'Cài đặt', Icon: Setting },
 ];
 

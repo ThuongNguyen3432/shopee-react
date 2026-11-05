@@ -1,4 +1,5 @@
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 
@@ -14,6 +15,7 @@ const lives = [
 ];
 
 export default function LivePage() {
+  useSEO({ title: 'Shopee Live', description: 'Xem livestream mua sắm, deal sốc mỗi ngày trên Shopee Live.', url: '/live' });
   return (
     <div className="min-h-screen">
       <Header />

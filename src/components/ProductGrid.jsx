@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useCart } from '../context/CartContext.jsx';
 import ProductModal from './ProductModal.jsx';
 import ProductCard from './ProductCard.jsx';
@@ -18,20 +18,28 @@ const SORTS = [
 
 export default function ProductGrid() {
   const { add } = useCart();
-  const [list, setList] = useState(products);
   const [activeTab, setActiveTab] = useState('Gợi ý hôm nay');
   const [selected, setSelected] = useState(null);
   const [sort, setSort] = useState('popular');
   const [sortOpen, setSortOpen] = useState(false);
   const [visible, setVisible] = useState(24);
+  useEffect(() => { setVisible(24); }, [activeTab, sort]);
   const currentSort = SORTS.find((s) => s.value === sort) ?? SORTS[0];
 
-  const sorted = [...list].sort((a, b) => {
-    if (sort === 'price-asc') return a.price - b.price;
-    if (sort === 'price-desc') return b.price - a.price;
-    if (sort === 'rating') return b.rating - a.rating;
-    return 0;
-  });
+  const filtered = useMemo(() => {
+    let arr = [...products];
+    if (activeTab === 'Flash Sale') arr = arr.filter((p) => p.old_price && p.old_price > p.price);
+    else if (activeTab === 'Shopee Mall') arr = arr.filter((p) => p.mall);
+    else if (activeTab === 'Xu hướng') arr = arr.filter((p) => (p.sold || 0) >= 1000);
+    else if (activeTab === 'Mới nhất') arr = arr.slice().sort((a, b) => b.id - a.id);
+    else arr = arr.slice().sort((a, b) => (b.sold || 0) - (a.sold || 0));
+    if (sort === 'price-asc') arr.sort((a, b) => a.price - b.price);
+    else if (sort === 'price-desc') arr.sort((a, b) => b.price - a.price);
+    else if (sort === 'rating') arr.sort((a, b) => b.rating - a.rating);
+    return arr;
+  }, [activeTab, sort]);
+
+  const sorted = filtered;
 
   return (
     <section className="bg-white mt-2.5 p-3 rounded-lg">

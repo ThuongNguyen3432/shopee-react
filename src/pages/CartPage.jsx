@@ -9,6 +9,7 @@ import { PRODUCTS } from '../data/products.js';
 import { getShopInfo, shopPath } from '../lib/shop.js';
 import ProductCard from '../components/ProductCard.jsx';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 
@@ -73,6 +74,7 @@ function QtyStepper({ qty, onChange }) {
 export default function CartPage() {
   const navigate = useNavigate();
   const { items, removeMany, updateQty } = useCart();
+  useSEO({ title: 'Giỏ hàng', description: 'Giỏ hàng của bạn tại Shopee.', url: '/cart', noindex: true });
   const [excluded, setExcluded] = useState(() => new Set());
 
   const groups = useMemo(() => {

@@ -1,18 +1,32 @@
-export const SHOP_NAMES = [
-  'Shopee Official Store', 'Minh Anh Shop', 'TechZone Official', 'Style Việt',
-  'Home & Life', 'Beauty Corner', 'Thiên Phú Store', 'An Nhiên Shop',
+const SHOP_PREFIXES = [
+  'Minh Anh', 'TechZone', 'Style Việt', 'Home & Life', 'Beauty Corner',
+  'Thiên Phú', 'An Nhiên', 'Fashion Hub', 'Digital World', 'Gia Dụng Việt',
+  'Mẹ & Bé', 'Sách & Quà', 'Thể Thao Pro', 'Phụ Kiện Xinh', 'Điện Máy',
+  'Thực Phẩm Sạch', 'Đồ Chơi', 'Nội Thất', 'Văn Phòng Phẩm', 'Y Tế',
 ];
+
+const SHOP_SUFFIXES = ['', ' Official', ' Store', ' Shop', ' Mall', ' Center'];
 
 const SHOP_LOCATIONS = [
   'Hà Nội', 'TP. Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng',
   'Cần Thơ', 'Bình Dương', 'Đồng Nai', 'Khánh Hòa',
+  'Nghệ An', 'Thanh Hóa', 'Quảng Ninh', 'Lâm Đồng',
 ];
+
+export const SHOP_COUNT = 1000;
+
+export const SHOP_NAMES = Array.from({ length: SHOP_COUNT }, (_, i) => {
+  const prefix = SHOP_PREFIXES[i % SHOP_PREFIXES.length];
+  const suffix = SHOP_SUFFIXES[(i * 7) % SHOP_SUFFIXES.length];
+  const num = Math.floor(i / SHOP_PREFIXES.length) + 1;
+  return num > 1 ? `${prefix}${suffix} ${num}` : `${prefix}${suffix}`.trim();
+});
 
 function seedOf(value) {
   return Number(String(value ?? '').replace(/\D/g, '')) || 1;
 }
 
-/** Chỉ số shop (0..7) suy ra từ id sản phẩm, dùng chung cho mọi nơi. */
+/** Chỉ số shop (0..999) suy ra từ id sản phẩm, dùng chung cho mọi nơi. */
 export function shopIndexOf(product = {}) {
   return seedOf(product.id ?? product.shopId ?? 1) % SHOP_NAMES.length;
 }
@@ -26,7 +40,7 @@ function buildShop(id, name, extra = {}) {
       || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=ee4d2d&color=fff&size=140`,
     banner: extra.banner || `https://picsum.photos/seed/shopbanner${id}/1200/220`,
     location: extra.location || SHOP_LOCATIONS[id % SHOP_LOCATIONS.length],
-    mall: !!extra.mall,
+    mall: !!extra.mall || (id % 7 === 0),
     category: extra.category || '',
     online: '5 phút trước',
     products: 1200 + (seed * 137) % 800,

@@ -4,11 +4,13 @@ import { slugify } from '../lib/slugify.js';
 import { PRODUCTS, CATEGORIES } from '../data/products.js';
 import ProductCard from '../components/ProductCard.jsx';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 
 export default function CategoryPage() {
   const { slug } = useParams();
+  useSEO({ title: displayName, description: `${displayName} - Mua sắm online tại Shopee.`, url: `/category/${slug}` });
   const decoded = decodeURIComponent(slug || '');
   const matchedCat = CATEGORIES.find((c) => slugify(c) === slugify(decoded));
   const displayName = matchedCat || decoded.replace(/-/g, ' ');

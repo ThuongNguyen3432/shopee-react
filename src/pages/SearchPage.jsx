@@ -1,10 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useEffect, useMemo, useState, useRef } from 'react';
+import { useSearchParams, Link, useLocation } from 'react-router-dom';
 import { ArrowDown2, TickCircle } from 'iconsax-react';
 import { PRODUCTS, CATEGORIES } from '../data/products.js';
 import { slugify } from '../lib/slugify.js';
 import ProductCard from '../components/ProductCard.jsx';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import TopSearchesSection from '../components/TopSearches.jsx';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 
@@ -25,10 +27,21 @@ function soldNumber(value) {
 
 export default function SearchPage() {
   const [params, setParams] = useSearchParams();
+  const location = useLocation();
   const q = params.get('q') || '';
   const cat = params.get('cat') || 'Tất cả';
   const sort = params.get('sort') || 'popular';
   const [visible, setVisible] = useState(24);
+  const catScrollRef = useRef(null);
+  const scrollCats = (dir) => {
+    const el = catScrollRef.current;
+    if (el) el.scrollBy({ left: dir * 200, behavior: 'smooth' });
+  };
+  useSEO({
+    title: q ? `Kết quả tìm kiếm: ${q}` : (cat !== 'Tất cả' ? cat : 'Tìm kiếm sản phẩm'),
+    description: `Tìm kiếm ${q || cat} trên Shopee. Hàng triệu sản phẩm giá tốt, freeship.`,
+    url: `/search${location.search}`,
+  });
 
   const filterCats = useMemo(() => ['Tất cả', ...CATEGORIES], []);
 
@@ -87,9 +100,10 @@ export default function SearchPage() {
 
         {/* Filter bar */}
         <div className="bg-white rounded-sm shadow-sm mb-3">
-          <div className="px-3 py-2.5 border-b border-gray-100 flex items-center gap-3 flex-wrap">
+          <div className="px-3 py-2.5 border-b border-gray-100 flex items-center gap-2">
             <span className="text-xs text-gray-500 shrink-0">Bộ lọc:</span>
-            <div className="flex gap-1.5 overflow-x-auto scrollbar-hide flex-1 min-w-0 py-0.5">
+            <button type="button" onClick={() => scrollCats(-1)} aria-label="Cuộn trái" className="shrink-0 w-9 h-9 flex items-center justify-center border border-gray-200 rounded-[2px] text-gray-600 text-lg hover:border-shopee-orange hover:text-shopee-orange hover:scale-110 transition">‹</button>
+            <div ref={catScrollRef} className="flex gap-1.5 overflow-x-auto scrollbar-hide flex-1 min-w-0 py-0.5">
               {filterCats.map((c) => {
                 const active = c === cat;
                 return (
@@ -107,6 +121,7 @@ export default function SearchPage() {
                 );
               })}
             </div>
+            <button type="button" onClick={() => scrollCats(1)} aria-label="Cuộn phải" className="shrink-0 w-9 h-9 flex items-center justify-center border border-gray-200 rounded-[2px] text-gray-600 text-lg hover:border-shopee-orange hover:text-shopee-orange hover:scale-110 transition">›</button>
           </div>
 
           <div className="px-3 py-2 flex items-center gap-3 flex-wrap">
@@ -139,6 +154,8 @@ export default function SearchPage() {
             </div>
           </div>
         </div>
+
+        <TopSearchesSection className="mb-3" />
 
         {/* Results */}
         <div className="bg-white rounded-sm shadow-sm p-3">

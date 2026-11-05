@@ -9,6 +9,7 @@ import { supabase, isSupabaseConfigured } from '../lib/supabase.js';
 import { PRODUCTS } from '../data/products.js';
 import { getShopInfo } from '../lib/shop.js';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 
@@ -68,6 +69,7 @@ export default function AccountPage() {
   const [params, setParams] = useSearchParams();
   const { user } = useAuth();
   const tab = params.get('tab') || 'profile';
+  useSEO({ title: 'Tài khoản của tôi', description: 'Quản lý tài khoản, đơn hàng, địa chỉ tại Shopee.', url: '/account', noindex: true });
   const orderStatus = params.get('status') || 'all';
 
   const setTab = (key) => {
@@ -309,11 +311,32 @@ export default function AccountPage() {
             {tab === 'coins' && (
               <div className="bg-white rounded-sm p-4 md:p-6">
                 <h2 className="text-base font-medium text-gray-800 mb-4">Shopee Xu</h2>
-                <div className="bg-gradient-to-r from-[#f53d2d] to-[#f63] text-white rounded-sm p-4 mb-4">
-                  <div className="text-xs opacity-90">Số dư Shopee Xu</div>
-                  <div className="text-2xl font-medium mt-1">0 Xu</div>
+                <div className="bg-gradient-to-b from-[#f53d2d] to-[#f63] text-white rounded-sm p-4 mb-4 flex items-center justify-between">
+                  <div>
+                    <div className="text-xs opacity-90">Số dư Shopee Xu</div>
+                    <div className="text-2xl font-medium mt-1">120 Xu</div>
+                  </div>
+                  <Coin size={40} variant="Bold" color="#fff" className="opacity-80" />
                 </div>
-                <div className="text-sm text-gray-500 text-center py-6">Chưa có lịch sử giao dịch Xu.</div>
+                <h3 className="text-sm font-medium text-gray-700 mb-2">Lịch sử giao dịch</h3>
+                <div className="divide-y divide-gray-100">
+                  {[
+                    { type: '+', amount: 50, desc: 'Đánh giá sản phẩm #SP20260003', date: '28/10/2026' },
+                    { type: '+', amount: 30, desc: 'Đăng nhập hàng ngày', date: '27/10/2026' },
+                    { type: '-', amount: 20, desc: 'Dùng Xu thanh toán đơn #SP20260001', date: '25/10/2026' },
+                    { type: '+', amount: 60, desc: 'Hoàn tiền Xu từ đơn #SP20260004', date: '20/10/2026' },
+                  ].map((t, i) => (
+                    <div key={i} className="flex items-center justify-between py-2.5 text-sm">
+                      <div className="min-w-0">
+                        <div className="text-gray-800 truncate">{t.desc}</div>
+                        <div className="text-[11px] text-gray-400">{t.date}</div>
+                      </div>
+                      <span className={`font-medium shrink-0 ${t.type === '+' ? 'text-green-600' : 'text-red-500'}`}>
+                        {t.type}{t.amount} Xu
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
@@ -396,7 +419,7 @@ export default function AccountPage() {
 
                             <div className="flex items-center justify-end gap-2 px-3 py-2 border-t border-gray-100 flex-wrap">
                               <button className="h-8 px-4 border border-gray-300 text-xs text-gray-700 rounded-[2px] hover:border-shopee-orange hover:text-shopee-orange">Liên hệ người bán</button>
-                              <button className="h-8 px-4 border border-gray-300 text-xs text-gray-700 rounded-[2px] hover:border-shopee-orange hover:text-shopee-orange">Chi tiết</button>
+                              <Link to={`/order/${o.code}`} className="h-8 px-4 border border-gray-300 text-xs text-gray-700 rounded-[2px] hover:border-shopee-orange hover:text-shopee-orange inline-flex items-center">Chi tiết</Link>
                               {o.status === 'done' && <button className="h-8 px-4 border border-shopee-orange text-xs text-shopee-orange rounded-[2px] hover:bg-shopee-orange-light flex items-center gap-1"><Star1 size={12} variant="Bold" color="currentColor" /> Đánh giá</button>}
                               <button className="h-8 px-4 bg-shopee-orange text-white text-xs rounded-[2px] hover:bg-shopee-red">Mua lại</button>
                             </div>

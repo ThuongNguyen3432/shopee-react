@@ -80,18 +80,18 @@ export default function ChatBox({ open, onClose, shop, product }) {
 
   if (!open) return null;
 
-  const send = (raw) => {
+  const send = (raw, image = null, sticker = null) => {
     const text = String(raw ?? input).trim();
-    if (!text) return;
+    if (!text && !image && !sticker) return;
     clearTimeout(timerRef.current);
-    setMessages((m) => [...m, { id: `me-${Date.now()}`, from: 'me', text, time: timeLabel() }]);
+    setMessages((m) => [...m, { id: `me-${Date.now()}`, from: 'me', text, image, sticker, time: timeLabel() }]);
     setInput('');
     setTyping(true);
     timerRef.current = setTimeout(() => {
       setMessages((m) => [...m, {
         id: `shop-${Date.now()}`,
         from: 'shop',
-        text: replyFor(text, shop, product),
+        text: sticker ? 'Dạ shop cảm ơn bạn ạ! 😊' : replyFor(text || 'hình ảnh', shop, product),
         time: timeLabel(),
       }]);
       setTyping(false);
@@ -106,7 +106,7 @@ export default function ChatBox({ open, onClose, shop, product }) {
       className="fixed z-[80] inset-0 sm:inset-auto sm:bottom-4 sm:right-4 w-full h-full sm:w-[360px] sm:h-[540px] bg-white flex flex-col sm:rounded-lg overflow-hidden shadow-2xl sm:border sm:border-gray-200"
     >
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#f53d2d] to-[#f63] text-white px-3 py-2.5 flex items-center gap-2 shrink-0">
+      <div className="bg-gradient-to-b from-[#f53d2d] to-[#f63] text-white px-3 py-2.5 flex items-center gap-2 shrink-0">
         <img src={shop.avatar} alt="" className="w-9 h-9 rounded-full object-cover border border-white/60" />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1">
@@ -151,7 +151,9 @@ export default function ChatBox({ open, onClose, shop, product }) {
               ? 'bg-shopee-orange text-white rounded-br-sm'
               : 'bg-white text-gray-800 border border-gray-100 rounded-bl-sm'}`}
             >
-              {m.text}
+              {m.sticker && <div className="text-3xl">{m.sticker}</div>}
+              {m.image && <img src={m.image} alt="" className="max-w-full rounded-md mb-1" />}
+              {m.text && <div>{m.text}</div>}
             </div>
             <span className="text-[10px] text-gray-400 shrink-0 mb-0.5">{m.time}</span>
           </div>
@@ -179,6 +181,21 @@ export default function ChatBox({ open, onClose, shop, product }) {
             {q}
           </button>
         ))}
+      </div>
+
+      {/* Stickers */}
+      <div className="flex gap-1.5 px-2 py-1.5 overflow-x-auto scrollbar-hide border-t border-gray-100 shrink-0">
+        {['😊','😂','❤️','👍','🎉','🔥','😍','🙏'].map((st) => (
+          <button key={st} type="button" onClick={() => send('', null, st)} className="shrink-0 text-lg hover:scale-125 transition">{st}</button>
+        ))}
+        <label className="shrink-0 w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-shopee-orange hover:text-shopee-orange cursor-pointer">
+          <input type="file" accept="image/*" className="hidden" onChange={(e) => {
+            const f = e.target.files?.[0];
+            if (f) send('', URL.createObjectURL(f));
+            e.target.value = '';
+          }} />
+          📷
+        </label>
       </div>
 
       {/* Input */}

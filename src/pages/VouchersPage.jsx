@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Ticket, TicketDiscount, Shop, Truck, Coin, TickCircle } from 'iconsax-react';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 import { store } from '../admin/store.js';
+import { useRequireAuth } from '../hooks/useRequireAuth.js';
 
 const VND = (n) => Number(n || 0).toLocaleString('vi-VN');
 
@@ -25,6 +27,7 @@ const MOCK_VOUCHERS = [
 
 export default function VouchersPage() {
   const [tab, setTab] = useState('all');
+  const requireAuth = useRequireAuth();
   const [saved, setSaved] = useState(() => {
     try { return new Set(JSON.parse(localStorage.getItem('savedVouchers') || '[]')); } catch { return new Set(); }
   });
@@ -52,6 +55,7 @@ export default function VouchersPage() {
   });
 
   const toggleSave = (id) => {
+    if (!requireAuth()) return;
     setSaved((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);

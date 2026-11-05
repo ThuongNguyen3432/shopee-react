@@ -8,6 +8,8 @@ import { PRODUCTS } from '../data/products.js';
 import { getShopById, shopIndexOf } from '../lib/shop.js';
 import ProductCard from '../components/ProductCard.jsx';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
+import { useRequireAuth } from '../hooks/useRequireAuth.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 import ChatBox from '../components/ChatBox.jsx';
@@ -62,12 +64,14 @@ export default function ShopPage() {
     location: params.get('location') || undefined,
     mall: params.get('mall') === '1',
   });
+  useSEO({ title: shop.name, description: `${shop.name} - Shop chính hãng trên Shopee.`, url: `/shop/${shopId}` });
 
   const [tab, setTab] = useState('products');
   const [sort, setSort] = useState('popular');
   const [visible, setVisible] = useState(30);
   const [followed, setFollowed] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
+  const requireAuth = useRequireAuth();
 
   const shopProducts = useMemo(() => {
     const list = PRODUCTS.filter((p) => shopIndexOf(p) === shop.id);
@@ -124,13 +128,13 @@ export default function ShopPage() {
               </div>
               <div className="flex gap-2 shrink-0 sm:pt-8">
                 <button
-                  onClick={() => setChatOpen(true)}
+                  onClick={() => { if (requireAuth()) setChatOpen(true); }}
                   className="h-9 px-4 border border-shopee-orange text-shopee-orange bg-shopee-orange-light text-sm flex items-center justify-center gap-1.5 rounded-[2px] hover:bg-[#ffe8e1] transition"
                 >
                   <Message size={15} variant="Outline" color="currentColor" /> Chat Ngay
                 </button>
                 <button
-                  onClick={() => setFollowed((v) => !v)}
+                  onClick={() => { if (requireAuth()) setFollowed((v) => !v); }}
                   className={`h-9 px-4 text-sm flex items-center justify-center gap-1.5 rounded-[2px] transition ${followed
                     ? 'bg-gray-100 text-gray-600 border border-gray-200'
                     : 'bg-shopee-orange text-white hover:bg-shopee-red'}`}

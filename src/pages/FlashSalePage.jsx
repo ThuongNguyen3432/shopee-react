@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
+import { useSEO } from '../hooks/useSEO.js';
 import Footer from '../components/Footer.jsx';
 import BackToTop from '../components/BackToTop.jsx';
 import LazyImage from '../components/LazyImage.jsx';
@@ -47,7 +48,7 @@ export default function FlashSalePage() {
       <Header />
       <div className="container mx-auto px-2 py-4 max-w-[1200px]">
         {/* Hero banner */}
-        <div className="bg-gradient-to-r from-[#f53d2d] to-[#f63] rounded-sm p-4 mb-3 text-white flex items-center justify-between flex-wrap gap-3">
+        <div className="bg-gradient-to-b from-[#f53d2d] to-[#f63] rounded-sm p-4 mb-3 text-white flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-3">
             <div className="text-2xl md:text-3xl font-bold italic">FLASH SALE</div>
             <div className="text-xs opacity-90">Giảm đến 70% · Số lượng có hạn</div>
@@ -108,8 +109,10 @@ export default function FlashSalePage() {
                     </div>
                     <div className="mt-2">
                       <div className="h-3 bg-[#ffe8e1] rounded-full overflow-hidden relative">
-                        <div className="h-full bg-gradient-to-r from-[#f53d2d] to-[#f63] rounded-full" style={{ width: `${pct}%` }} />
-                        <span className="absolute inset-0 flex items-center justify-center text-[9px] text-white font-bold">Đã bán {sold}</span>
+                        <div className="h-full bg-gradient-to-r from-[#ff9a44] via-[#f53d2d] to-[#f63] rounded-full relative" style={{ width: `${pct}%` }}>
+                          <span className="absolute -right-1 top-1/2 -translate-y-1/2 text-[12px] leading-none drop-shadow-sm">🔥</span>
+                        </div>
+                        <span className="absolute inset-0 flex items-center justify-center text-[9px] text-white font-bold drop-shadow">Đã bán {sold}</span>
                       </div>
                     </div>
                     <button className="mt-2 w-full h-7 bg-shopee-orange text-white text-xs rounded-[2px] hover:bg-shopee-red">Mua ngay</button>
