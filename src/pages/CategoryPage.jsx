@@ -10,10 +10,10 @@ import BackToTop from '../components/BackToTop.jsx';
 
 export default function CategoryPage() {
   const { slug } = useParams();
-  useSEO({ title: displayName, description: `${displayName} - Mua sắm online tại Shopee.`, url: `/category/${slug}` });
   const decoded = decodeURIComponent(slug || '');
   const matchedCat = CATEGORIES.find((c) => slugify(c) === slugify(decoded));
   const displayName = matchedCat || decoded.replace(/-/g, ' ');
+  useSEO({ title: displayName, description: `${displayName} - Mua sắm online tại Shopee.`, url: `/category/${slug}` });
 
   const filtered = matchedCat
     ? PRODUCTS.filter((p) => p.category === matchedCat)

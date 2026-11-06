@@ -13,6 +13,7 @@ import BackToTop from './components/BackToTop.jsx';
 import PromoPopup from './components/PromoPopup.jsx';
 import TopSearchesSection from './components/TopSearches.jsx';
 import AuthCallback from './pages/AuthCallback.jsx';
+import ResetPassword from './pages/ResetPassword.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 import Checkout from './pages/Checkout.jsx';
 import ProductDetail from './pages/ProductDetail.jsx';
@@ -83,6 +84,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Storefront />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
+        <Route path="/auth/reset" element={<ResetPassword />} />
         <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
         <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
         <Route path="/account" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
